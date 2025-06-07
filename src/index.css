@@ -1,0 +1,40 @@
+body {
+    font-family: 'Playfair Display', serif; /* Fuente elegante para títulos */
+    margin: 0;
+    padding: 0;
+    background-color: #fefcf4; /* Fondo beige claro */
+    color: #333; /* Texto oscuro */
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: #6b4226; /* Marrón elegante */
+    margin: 0;
+}
+
+p {
+    font-family: 'Roboto', sans-serif; /* Fuente moderna para texto */
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #6b4226;
+}
+
+button {
+    font-family: 'Roboto', sans-serif;
+    background-color: #6b4226;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #8c5a3c;
+}

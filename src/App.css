@@ -1,0 +1,17 @@
+/* filepath: c:\Users\A307103\proyectos\digital-wedding-invitation\src\App.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    color: #ff6f61;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    color: #333;
+}

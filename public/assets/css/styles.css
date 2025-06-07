@@ -1,0 +1,70 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.header {
+    background-color: #ffcccb;
+    text-align: center;
+    padding: 20px;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+.header p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.invitation-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.invitation-card h2 {
+    font-size: 2em;
+    color: #e63946;
+}
+
+.invitation-card p {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.footer {
+    background-color: #ffcccb;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .invitation-card h2 {
+        font-size: 1.5em;
+    }
+
+    .invitation-card p {
+        font-size: 1em;
+    }
+}
