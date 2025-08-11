@@ -1,0 +1,39 @@
+.rsvp-section-centered {
+  background: #faf7f2;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  margin: 2rem auto;
+  padding: 2rem 1.5rem;
+  max-width: 700px;
+  text-align: center;
+}
+
+.rsvp-title {
+  font-family: 'Playfair Display', serif;
+  color: #6b4226;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.rsvp-subtitle {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.rsvp-btn {
+  background: #6b4226;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 0.75rem 2.5rem;
+  font-size: 1.1rem;
+  font-family: 'Playfair Display', serif;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin: 1rem auto 0 auto;
+  display: inline-block;
+}
+.rsvp-btn:hover {
+  background: #a08c5b;
+}

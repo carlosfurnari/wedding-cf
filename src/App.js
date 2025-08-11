@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
+
 import Counter from './components/Counter';
-import Ceremony from './components/Ceremony';
+import CeremonyCentered from './components/CeremonyCentered';
 import Section from './components/Section';
-import Gallery from './components/Gallery';
-import Footer from './components/Footer';
+import RSVPSectionFull from './components/RSVPSectionFull';
+import DressSection from './components/DressSection';
+
+import ItinerarySection from './components/ItinerarySection';
+import GiftsSection from './components/GiftsSection';
 
 function App() {
     // Estado para el contador
@@ -33,28 +37,21 @@ function App() {
             {/* Resto de la web */}
             {/* <Header /> */}
 
-            <Ceremony />
+            <CeremonyCentered />
+
 
             {/* Confirmación de asistencia */}
-            <Section title="Confirmar asistencia" className="rsvp-section">
-                <p>Por favor, confírmanos si podrás acompañarnos en este día tan especial.</p>
-                <button className="btn">Confirmar asistencia</button>
-            </Section>
+            <RSVPSectionFull />
+
+            {/* Dress Code, Hospedaje, Traslado */}
+            <DressSection />
+
+
+            {/* Itinerario */}
+            <ItinerarySection />
 
             {/* Mesa de regalos */}
-            <Section title="Mesa de regalos" className="gifts-section">
-                <p>Tu presencia es nuestro mejor regalo, pero si deseas hacernos un obsequio, aquí tienes algunas opciones:</p>
-                <ul style={{textAlign: 'left', maxWidth: 400, margin: '1rem auto'}}>
-                  <li>CBU: 0000003100000000001234</li>
-                  <li>Alias: casamientoflorcarlos</li>
-                  <li>Lista en Tienda XYZ</li>
-                </ul>
-            </Section>
-
-            {/* Galería */}
-            <Gallery />
-
-            <Footer />
+            <GiftsSection />
         </div>
     );
 }

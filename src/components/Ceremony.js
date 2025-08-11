@@ -1,29 +1,36 @@
 
 
 
-const Ceremony = () => (
-  <section className="ceremony-section section">
-    <div className="ceremony-center-content">
-      <div className="ceremony-icon">
-            <img src={iconAnillos} alt="Anillos" style={{width: '48px', height: '48px'}} />
-      </div>
-      <h2 className="ceremony-title">Ceremonia & Fiesta</h2>
-      <div className="ceremony-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Lugar de la ceremonia" className="ceremony-img" />
-      </div>
-      <div className="ceremony-info">
-        <div className="ceremony-label">DÍA Y HORARIO</div>
-        <div className="ceremony-date">29 de noviembre de 2025 a las 19:30hs</div>
-        <div className="ceremony-label">LUGAR</div>
-        <div className="ceremony-place">"Tomate Estación de Sabores", Av. Isabel Infanta 555</div>
-      </div>
-      <div className="ceremony-buttons">
-        <a className="ceremony-btn" href="#" target="_blank" rel="noopener noreferrer">🗓️ AGENDAR</a>
-        <a className="ceremony-btn" href="https://maps.app.goo.gl/U22VVKygxi9TTEc36" target="_blank" rel="noopener noreferrer">📍 ¿CÓMO LLEGAR?</a>
-      </div>
-    </div>
-  </section>
-);
 
 import iconAnillos from '../assets/icon-anillos-v2-b.png';
+import tomateImg from '../assets/tomate.jpeg';
+import React from 'react';
+
+const Ceremony = () => (
+      <section className="ceremonyfiesta-section">
+  <div className="ceremonyfiesta-content-centered">
+          <img src={iconAnillos} alt="Icono anillos" className="ceremonyfiesta-icon" style={{width: '120px', opacity: 0.5, marginBottom: 0, marginTop: 0}} />
+          <h2 className="lovestory text-center text-gris" style={{fontFamily: 'Great Vibes, cursive', fontSize: '2.5rem', margin: '1rem 0 0.5rem 0'}}>Ceremonia</h2>
+          <img 
+            src={tomateImg} 
+            alt="Ceremonia & Fiesta" 
+            className="img-fluid rounded-circle mb-3" 
+            style={{ width: '200px', height: '200px', objectFit: 'cover', borderRadius: '50%' }} 
+          />
+          <p className="text-black-50 mb-2 font-weight-bolder section-sub-title" style={{marginTop: '1.2rem', marginBottom: '0.2rem'}}>DIA Y HORARIO</p>
+          <p className="text-center text-gris">29 de Noviembre de 2025 a las 19:30hs</p>
+          <p className="text-black-50 mb-2 font-weight-bolder section-sub-title" style={{marginTop: '1.2rem', marginBottom: '0.2rem'}}>LUGAR</p>
+          <p className="text-center text-gris">"Tomate", Av. Infanta Isabel 555, CABA</p>
+          <div className="ceremonyfiesta-buttons">
+            <button className="btn mb-2 text-uppercase rounded-pill btn-outline-dark btn-small p-2 pl-3 pr-3">
+              <i className="icon-calendar" aria-hidden="true"></i>  Agendar
+            </button>
+            <button className="btn mb-2 text-uppercase rounded-pill btn-outline-dark btn-small p-2 pl-3 pr-3">
+              <i className="icon-map-marker" aria-hidden="true"></i>  ¿CÓMO LLEGAR?
+            </button>
+          </div>
+        </div>
+      </section>
+);
+
 export default Ceremony;

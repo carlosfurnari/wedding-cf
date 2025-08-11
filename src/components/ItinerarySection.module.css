@@ -1,0 +1,133 @@
+.sectionWrapper {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 64px 0 64px 0;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.headerRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+.headerIcon {
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+/* Timeline visual styles */
+.timelineContainer {
+  display: flex;
+  justify-content: center;
+}
+.timeline {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  padding: 32px 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: #222;
+  opacity: 0.12;
+  border-radius: 2px;
+  z-index: 0;
+}
+.timelineItem {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+.timelineItem:nth-child(even) {
+  flex-direction: row-reverse;
+}
+.timelineIcon {
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.timelineIconImg {
+  width: 44px;
+  height: 44px;
+  filter: grayscale(1) brightness(0.5) contrast(1.2);
+}
+.timelineContent {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 18px 28px;
+  min-width: 180px;
+  max-width: 260px;
+  margin: 0 32px;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+.timelineItem:nth-child(even) .timelineContent {
+  text-align: right;
+}
+.time {
+  font-family: 'Jost', sans-serif;
+  color: #222;
+  font-size: 1.05rem;
+  margin-bottom: 0.2rem;
+}
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 700px) {
+  .timeline {
+    max-width: 98vw;
+    padding: 0;
+  }
+  .timelineContent {
+    margin: 0 8px;
+    padding: 14px 10px;
+    min-width: 0;
+    max-width: 98vw;
+  }
+  .timelineIcon {
+    width: 48px;
+    height: 48px;
+  }
+  .timelineIconImg {
+    width: 32px;
+    height: 32px;
+  }
+}
+@media (max-width: 700px) {
+  .timeline {
+    max-width: 98vw;
+  }
+  .container {
+    padding: 0 2vw;
+  }
+}
