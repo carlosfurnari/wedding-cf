@@ -1,17 +1,223 @@
-/* filepath: c:\Users\A307103\proyectos\digital-wedding-invitation\src\App.css */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
+.hero-circle {
+    position: relative;
+    /* ...existing code... */
+}
+/* Fuente manuscrita para nombres */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap');
+
+/* Portada circular principal */
+.hero-circle {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 3rem auto 2rem auto;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 80px 0 rgba(191,169,128,0.10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    overflow: visible;
 }
 
-h1 {
-    color: #ff6f61;
+/* Espacio para flores decorativas (puedes poner imágenes absolutas) */
+.hero-flower {
+    position: absolute;
+    z-index: 0;
+}
+
+.hero-date {
+    font-size: 1.3rem;
+    color: #bdbdbd;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.2rem;
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
     text-align: center;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0.5rem 0;
+    width: 60%;
+}
+
+.hero-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.2rem;
+    color: #888;
+    text-align: center;
+    margin: 0.5rem 0 0.5rem 0;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #888;
+    text-align: center;
+    margin-bottom: 2.2rem;
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
+    width: 60%;
+    padding: 0.5rem 0;
+}
+
+.hero-countdown-label {
+    font-size: 0.9rem;
+    color: #bdbdbd;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.7rem;
+    text-transform: lowercase;
+    text-align: center;
+}
+
+.hero-countdown {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.hero-countdown-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #888;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.04em;
+}
+
+.hero-countdown-text {
+    font-size: 0.9rem;
+    color: #bdbdbd;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+}
+/* Cuenta regresiva estilo amoinvitar */
+.countdown-section {
+    background: #fff !important;
+    border: 2px solid #bfa980;
+    box-shadow: 0 4px 24px rgba(191,169,128,0.08);
+    max-width: 500px;
+    padding: 2.5rem 1.5rem 2rem 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 0 auto 1.5rem auto;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-number {
+    background: #faf7f2;
+    border: 2px solid #bfa980;
+    color: #bfa980;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 8px rgba(191,169,128,0.08);
+}
+
+.countdown-label {
+    color: #bfa980;
+    font-size: 1rem;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    margin-top: 0;
+}
+/* filepath: c:\Users\A307103\proyectos\digital-wedding-invitation\src\App.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+body {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #444;
+    min-height: 100vh;
+    letter-spacing: 0.02em;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    color: #bfa980;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 p {
     text-align: center;
-    color: #333;
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Fondo sutil para secciones */
+.section {
+    background: #faf7f2;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    margin: 2rem auto;
+    padding: 2rem 1.5rem;
+    max-width: 700px;
+}
+
+/* Botón elegante */
+.btn {
+    background: #bfa980;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 0.75rem 2.5rem;
+    font-size: 1.1rem;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin: 1rem auto;
+    display: block;
+}
+.btn:hover {
+    background: #a08c5b;
+}
+
+/* Separador decorativo */
+.divider {
+    width: 80px;
+    height: 2px;
+    background: #bfa980;
+    margin: 2rem auto;
+    border-radius: 2px;
+    opacity: 0.3;
 }

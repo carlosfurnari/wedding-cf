@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Jost:wght@400;700&display=swap');
+.counter-section {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.counter-overlay {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 2rem 1rem 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 340px;
+  width: 100%;
+}
+.counter-icon {
+  width: 60px;
+  opacity: 0.5;
+  margin-bottom: 1.2rem;
+}
+.counter-date {
+  font-size: 1.2rem;
+  color: #888;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.7rem;
+  margin-top: 0.5rem;
+  font-family: 'Jost', Arial, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  border-top: 2px solid #bdbdbd;
+  border-bottom: 2px solid #bdbdbd;
+  padding: 0.3rem 0;
+  width: 100%;
+}
+.counter-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.7rem;
+  color: #888;
+  text-align: center;
+  margin: 0.5rem 0 0.5rem 0;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+.counter-heart {
+  color: #bfa980;
+  font-size: 2rem;
+  vertical-align: middle;
+}
+.counter-subtitle {
+  font-size: 1.1rem;
+  color: #888;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  margin-top: 0.5rem;
+  font-family: 'Jost', Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  border-bottom: 2px solid #bdbdbd;
+  border-top: 2px solid #bdbdbd;
+  width: 100%;
+  padding: 0.3rem 0;
+}
+.counter-label {
+  font-size: 0.85rem;
+  color: #888;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.7rem;
+  text-transform: lowercase;
+  text-align: center;
+}
+.counter-countdown {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.counter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+.counter-number {
+  font-family: 'Jost', Arial, sans-serif;
+  font-size: 1.7rem;
+  color: #888;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.04em;
+}
+.counter-text {
+  font-size: 0.8rem;
+  color: #bdbdbd;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: 'Jost', Arial, sans-serif;
+}
