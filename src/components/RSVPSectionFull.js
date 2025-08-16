@@ -35,7 +35,7 @@ const RSVPSectionFull = () => {
       companions
     };
     try {
-      await fetch('https://script.google.com/macros/s/AKfycbx_4nzgJMTK-PMOhT7lch69ZvrGv4HVPNAbkBmfX9KDoWiFXRvo6MozIfZ8vzNlDx8xaQ/exec', {
+      await fetch('/.netlify/functions/rsvp', {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }
