@@ -95,16 +95,39 @@ const RSVPSectionFull = () => {
         </div>
       </div>
       {showModal && (
-        <div style={{
-          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-          background: 'rgba(0,0,0,0.45)', display: 'flex',
-          alignItems: 'center', justifyContent: 'center', zIndex: 1000
-        }} onClick={() => setShowModal(false)}>
-          <div style={{
-            background: '#fff', borderRadius: 24, padding: '32px 24px 24px 24px',
-            maxWidth: 500, width: '95vw', boxShadow: '0 4px 32px rgba(0,0,0,0.12)',
-            position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center'
-          }} onClick={e => e.stopPropagation()}>
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0,0,0,0.45)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            overflowY: 'auto'
+          }}
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            style={{
+              background: '#fff',
+              borderRadius: 24,
+              padding: '32px 24px 24px 24px',
+              maxWidth: 500,
+              width: '95vw',
+              boxShadow: '0 4px 32px rgba(0,0,0,0.12)',
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              maxHeight: '90vh',
+              overflowY: 'auto'
+            }}
+            onClick={e => e.stopPropagation()}
+          >
             <button style={{
               position: 'absolute', top: 16, right: 18, background: 'none', border: 'none',
               fontSize: '2.2rem', color: '#bfa07a', cursor: 'pointer', lineHeight: 1
