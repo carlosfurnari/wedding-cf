@@ -35,7 +35,7 @@ const RSVPSectionFull = () => {
       companions
     };
     try {
-      await fetch('https://script.google.com/macros/s/AKfycbw4Dp0Jbnt8NyHnl47bk3JDiXVsF2Kyr-q1htKETbvjWyjzeXOLsciq8RObeS9flbi7FQ/exec', {
+      await fetch('https://script.google.com/macros/s/AKfycbx_4nzgJMTK-PMOhT7lch69ZvrGv4HVPNAbkBmfX9KDoWiFXRvo6MozIfZ8vzNlDx8xaQ/exec', {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }
