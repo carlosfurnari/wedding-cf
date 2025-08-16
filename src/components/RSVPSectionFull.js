@@ -4,6 +4,47 @@ import bgWhite2 from '../assets/bg-white2.jpg';
 
 const RSVPSectionFull = () => {
   const [showModal, setShowModal] = useState(false);
+  const [guestName, setGuestName] = useState("");
+  const [foodRestriction, setFoodRestriction] = useState("No");
+  const [otherRestriction, setOtherRestriction] = useState("");
+  const [companions, setCompanions] = useState([]);
+
+  const addCompanion = () => {
+    setCompanions([...companions, { name: "", foodRestriction: "No", otherRestriction: "" }]);
+  };
+
+  const updateCompanion = (idx, field, value) => {
+    const updated = companions.map((c, i) =>
+      i === idx
+        ? { ...c, [field]: value, ...(field === "foodRestriction" && value !== "Otras" ? { otherRestriction: "" } : {}) }
+        : c
+    );
+    setCompanions(updated);
+  };
+
+  const removeCompanion = (idx) => {
+    setCompanions(companions.filter((_, i) => i !== idx));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const payload = {
+      guestName,
+      foodRestriction,
+      otherRestriction,
+      companions
+    };
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbw4Dp0Jbnt8NyHnl47bk3JDiXVsF2Kyr-q1htKETbvjWyjzeXOLsciq8RObeS9flbi7FQ/exec', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      setShowModal(false);
+    } catch (err) {
+      alert('Error al enviar: ' + err.message);
+    }
+  };
 
   return (
     <section
@@ -69,8 +110,139 @@ const RSVPSectionFull = () => {
               fontSize: '2.2rem', color: '#bfa07a', cursor: 'pointer', lineHeight: 1
             }} onClick={() => setShowModal(false)}>&times;</button>
             <h3 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1.2rem'}}>Confirmar asistencia</h3>
-            {/* Aquí va el formulario avanzado si lo necesitas */}
-            <p>Formulario de confirmación aquí...</p>
+            <form style={{width: '100%'}} onSubmit={handleSubmit}>
+              <label style={{display: 'block', marginBottom: 8, fontWeight: 500, textAlign: 'left'}}>Nombre y apellido</label>
+              <input
+                type="text"
+                placeholder="Ingresá tu nombre completo"
+                value={guestName}
+                onChange={e => setGuestName(e.target.value)}
+                style={{
+                  width: '60%',
+                  maxWidth: 260,
+                  padding: '10px',
+                  borderRadius: 8,
+                  border: '1px solid #ccc',
+                  marginBottom: 18,
+                  display: 'block',
+                  marginLeft: 0
+                }}
+              />
+
+              <label style={{display: 'block', marginBottom: 8, fontWeight: 500}}>¿Tenés alguna restricción alimenticia?</label>
+              <select
+                value={foodRestriction}
+                onChange={e => { setFoodRestriction(e.target.value); if(e.target.value !== 'Otras') setOtherRestriction(''); }}
+                style={{
+                  width: '60%',
+                  maxWidth: 260,
+                  padding: '10px',
+                  borderRadius: 8,
+                  border: '1px solid #ccc',
+                  marginBottom: 18,
+                  display: 'block',
+                  marginLeft: 0
+                }}
+              >
+                <option value="No">No</option>
+                <option value="Si, vegan@">Si, vegan@</option>
+                <option value="Si, vegetarian@">Si, vegetarian@</option>
+                <option value="Si, celiac@">Si, celiac@</option>
+                <option value="Otras">Otras</option>
+              </select>
+              {foodRestriction === 'Otras' && (
+                <input
+                  type="text"
+                  placeholder="Especificá tu restricción"
+                  value={otherRestriction}
+                  onChange={e => setOtherRestriction(e.target.value)}
+                  style={{width: '100%', padding: '10px', borderRadius: 8, border: '1px solid #ccc', marginBottom: 18}}
+                />
+              )}
+
+              <button
+                type="button"
+                onClick={addCompanion}
+                style={{
+                  marginBottom: 18,
+                  padding: '10px 16px',
+                  borderRadius: 8,
+                  background: '#eee',
+                  border: '1px solid #ccc',
+                  fontWeight: 500,
+                  color: '#6d4c1a'
+                }}
+              >
+                Agregar acompañante
+              </button>
+
+              {companions.map((companion, idx) => (
+                <div key={idx} style={{marginBottom: 24, padding: 12, border: '1px solid #eee', borderRadius: 8, background: '#fafafa', position: 'relative'}}>
+                  <label style={{display: 'block', marginBottom: 8, fontWeight: 500}}>Nombre y apellido del acompañante</label>
+                  <input
+                    type="text"
+                    placeholder="Ingresá el nombre completo"
+                    value={companion.name}
+                    onChange={e => updateCompanion(idx, "name", e.target.value)}
+                    style={{
+                      width: '60%',
+                      maxWidth: 260,
+                      padding: '10px',
+                      borderRadius: 8,
+                      border: '1px solid #ccc',
+                      marginBottom: 18,
+                      display: 'block',
+                      marginLeft: 0
+                    }}
+                  />
+
+                  <label style={{display: 'block', marginBottom: 8, fontWeight: 500}}>¿Tiene alguna restricción alimenticia?</label>
+                  <select
+                    value={companion.foodRestriction}
+                    onChange={e => updateCompanion(idx, "foodRestriction", e.target.value)}
+                    style={{
+                      width: '60%',
+                      maxWidth: 260,
+                      padding: '10px',
+                      borderRadius: 8,
+                      border: '1px solid #ccc',
+                      marginBottom: 18,
+                      display: 'block',
+                      marginLeft: 0
+                    }}
+                  >
+                    <option value="No">No</option>
+                    <option value="Si, vegan@">Si, vegan@</option>
+                    <option value="Si, vegetarian@">Si, vegetarian@</option>
+                    <option value="Si, celiac@">Si, celiac@</option>
+                    <option value="Otras">Otras</option>
+                  </select>
+                  {companion.foodRestriction === 'Otras' && (
+                    <input
+                      type="text"
+                      placeholder="Especificá la restricción"
+                      value={companion.otherRestriction}
+                      onChange={e => updateCompanion(idx, "otherRestriction", e.target.value)}
+                      style={{width: '100%', padding: '10px', borderRadius: 8, border: '1px solid #ccc', marginBottom: 18}}
+                    />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => removeCompanion(idx)}
+                    style={{position: 'absolute', top: 8, right: 8, background: '#ffeaea', border: '1px solid #e0b4b4', borderRadius: 8, padding: '4px 10px', color: '#b00', fontWeight: 500, cursor: 'pointer'}}
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              ))}
+
+              <button
+                type="submit"
+                style={{width: '100%', padding: '12px', borderRadius: 8, background: '#bfa07a', color: '#fff', border: 'none', fontWeight: 600, fontSize: '1.1rem', marginTop: 8, cursor: 'pointer'}}
+              >
+                Enviar confirmación
+              </button>
+            </form>
           </div>
         </div>
       )}
