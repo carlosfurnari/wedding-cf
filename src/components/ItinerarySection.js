@@ -10,13 +10,11 @@ import iconBrindis from '../assets/timeline-icon-brindis.png';
 import styles from './ItinerarySection.module.css';
 
 const timeline = [
-  { time: '20:00hs', title: 'Ceremonia', icon: iconCeremonia },
-  { time: '21:00hs', title: 'Recepción', icon: iconRecepcion },
-  { time: '22:00hs', title: 'Entrada de los novios', icon: iconNovios },
-  { time: '22:30hs', title: 'Vals', icon: iconVals },
-  { time: '23:00hs', title: 'Cena', icon: iconCena },
-  { time: '0:00hs', title: 'Baile', icon: iconDisco },
-  { time: '4:00hs', title: 'Brindis', icon: iconBrindis },
+  { time: '19:30hs', title: 'Ceremonia', icon: iconCeremonia },
+  { time: '20:00hs', title: 'Recepción', icon: iconRecepcion },
+  { time: '22:00hs', title: 'Cena', icon: iconCena },
+  { time: '00:00hs', title: 'Torta y Brindis', icon: iconBrindis },
+  { time: '01:45hs', title: 'Fin de Fiesta', icon: iconNovios },
 ];
 
 const ItinerarySection = () => (
