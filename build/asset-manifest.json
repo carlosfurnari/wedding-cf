@@ -1,11 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.a729ae57.css",
-    "main.js": "/static/js/main.675c663d.js",
-    "static/media/bg-white2.jpg": "/static/media/bg-white2.5b37de8d55b61eb1bd97.jpg",
-    "static/media/tomate.jpeg": "/static/media/tomate.e7baaa2a2d4795e2b151.jpeg",
-    "static/media/bg-white1b.jpg": "/static/media/bg-white1b.4344260d48fe2b0c46f3.jpg",
-    "static/media/bg-white3.jpg": "/static/media/bg-white3.3b2990c0d397c0794533.jpg",
+    "main.css": "/static/css/main.2ab93cbc.css",
+    "main.js": "/static/js/main.e7fff973.js",
+    "static/media/mapa1.png": "/static/media/mapa1.14b0afd459122143b132.png",
+    "static/media/tomate.jpeg": "/static/media/tomate.cf3b38d6cfd09a9dad31.jpeg",
     "static/media/timeline-icon-disco.png": "/static/media/timeline-icon-disco.e9ee0936a02f06959c91.png",
     "static/media/dress-code2.jpg": "/static/media/dress-code2.2bdb1a2565cd920677c5.jpg",
     "static/media/dress-code6.jpg": "/static/media/dress-code6.1a61939437a4c254d78c.jpg",
@@ -13,11 +11,11 @@
     "static/media/dress-code4.jpg": "/static/media/dress-code4.cff0bba25da2918cb02d.jpg",
     "static/media/dress-code5.jpg": "/static/media/dress-code5.b473a6c9fe4e6aee43bb.jpg",
     "index.html": "/index.html",
-    "main.a729ae57.css.map": "/static/css/main.a729ae57.css.map",
-    "main.675c663d.js.map": "/static/js/main.675c663d.js.map"
+    "main.2ab93cbc.css.map": "/static/css/main.2ab93cbc.css.map",
+    "main.e7fff973.js.map": "/static/js/main.e7fff973.js.map"
   },
   "entrypoints": [
-    "static/css/main.a729ae57.css",
-    "static/js/main.675c663d.js"
+    "static/css/main.2ab93cbc.css",
+    "static/js/main.e7fff973.js"
   ]
 }

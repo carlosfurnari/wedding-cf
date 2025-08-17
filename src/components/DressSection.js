@@ -12,15 +12,15 @@ const DressSection = () => {
   const [showDressModal, setShowDressModal] = useState(false);
 
   return (
-  <section className={styles.sectionWrapper} style={{ backgroundColor: '#F2F2F2' }}>
+  <section className={styles.sectionWrapper}>
       <div className={styles.innerContainer}>
         {/* Dress Code */}
         <div className={styles.card}>
           <img src={dressIcon} alt="Dress Code" className={styles.icon} />
           <h2 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1.5rem'}}>Dress Code</h2>
           <p className="text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '2.2rem'}}>Elegante Sport</p>
-          <button className="btn mb-2 text-uppercase rounded-pill btn-outline-dark btn-small" style={{margin: '0 auto', display: 'inline-block', marginBottom: 0}} onClick={() => setShowDressModal(true)}>
-            Sugerencias
+          <button className="btn btn--secondary btn--md" style={{margin: '0 auto', display: 'inline-block', marginBottom: 0}} onClick={() => setShowDressModal(true)}>
+            SUGERENCIAS
           </button>
         </div>
       </div>

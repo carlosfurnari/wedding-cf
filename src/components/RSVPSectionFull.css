@@ -33,31 +33,32 @@
   padding: 2rem 1.5rem;
 }
 .lovestory {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Dantina', sans-serif;
   font-size: 2.2rem;
-  color: #888;
+  color: var(--text);
   margin: 1rem 0 0.5rem 0;
 }
 .text-gris {
-  color: #888;
+  color: var(--text-muted);
 }
 .btn {
-  background: #fff;
-  border: 1.5px solid #bfa980;
-  color: #bfa980;
+  background: var(--primary);
+  border: 1.5px solid var(--primary);
+  color: #fff;
   border-radius: 24px;
-  padding: 0.5rem 1.5rem;
+  padding: 0.6rem 1.5rem;
   font-size: 1rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   display: inline-block;
   margin: 0.5rem auto 0 auto;
 }
 .btn:hover {
-  background: #bfa980;
+  background: var(--primary-hover);
   color: #fff;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
 }
 .btn-small {
   font-size: 0.95rem;
@@ -77,4 +78,36 @@
 }
 .mb-5 {
   margin-bottom: 3rem!important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .site-section { margin: 1.2rem 1rem; }
+  .p-4 { padding: 1.2rem 1rem; }
+}
+
+@media (max-width: 480px) {
+  .site-section { margin: 1rem 0.75rem; border-radius: 12px; }
+  .p-4 { padding: 1rem 0.75rem; }
+  .btn { width: 100%; }
+}
+
+/* Botón eliminar dentro de tarjeta de acompañante */
+.companion-card { padding: 12px; }
+.companion-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.companion-delete {
+  background: #fff;
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  padding: 2px 8px;
+  color: var(--danger);
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 0.78rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+@media (max-width: 480px) {
+  .companion-card { padding: 12px; }
+  .companion-delete { padding: 2px 6px; font-size: 0.74rem; }
 }

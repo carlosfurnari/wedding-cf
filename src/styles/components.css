@@ -1,0 +1,46 @@
+/* Shared UI components: buttons, inputs, cards, modals */
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 24px;
+  padding: 10px 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.btn--sm { padding: 8px 14px; font-size: 0.95rem; border-radius: 20px; }
+.btn--md { padding: 12px 18px; font-size: 1rem; }
+.btn--lg { padding: 14px 24px; font-size: 1.05rem; border-radius: 28px; }
+
+.btn--primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn--primary:hover { background: var(--primary-hover); box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+
+.btn--secondary { background: #fff; color: var(--primary); border-color: var(--primary); }
+.btn--secondary:hover { background: var(--primary); color: #fff; box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+
+.btn--tertiary { background: transparent; color: var(--primary); border-color: transparent; text-decoration: none; }
+.btn--tertiary:hover { text-decoration: underline; }
+
+/* Form controls */
+.form-label { font-size: 0.95rem; color: var(--text); font-weight: 500; margin-bottom: 6px; display: block; }
+.form-control { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); font-family: 'Roboto', sans-serif; }
+.form-control:focus { outline: none; box-shadow: 0 0 0 2px rgba(191,169,128,0.25); border-color: var(--primary); }
+
+/* Card */
+.card { background: var(--surface-alt); border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 24px; }
+
+/* Modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modal-content { background: var(--surface); border-radius: 24px; padding: 32px 24px 24px; width: 95vw; max-width: 600px; box-shadow: 0 4px 32px rgba(0,0,0,0.12); position: relative; }
+.modal-close { position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 2.2rem; color: var(--primary); cursor: pointer; line-height: 1; }
+
+@media (max-width: 480px) {
+  .btn { min-height: 44px; width: auto; }
+}

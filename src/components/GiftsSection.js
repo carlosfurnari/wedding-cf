@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import iconGift from '../assets/icon-gift2-b.png';
-import bgWhite3 from '../assets/bg-white3.jpg';
 import './GiftsSection.css';
 
 const GiftsSection = () => {
@@ -10,11 +9,7 @@ const GiftsSection = () => {
     <section
       className="site-section gifts-section"
       style={{
-        backgroundImage: `linear-gradient(rgba(235,235,235,0.7),rgba(255,255,255,1)), url(${bgWhite3})`,
         backgroundColor: '#fff',
-        backgroundPosition: '50% 50%',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
         position: 'relative',
         minHeight: '60vh',
         display: 'flex',
@@ -36,7 +31,7 @@ const GiftsSection = () => {
         </p>
         <div className="gifts-buttons" style={{display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '0.5rem'}}>
           <button
-            className="btn mb-2 text-uppercase rounded-pill btn-outline-dark btn-small p-2 pl-3 pr-3"
+            className="btn btn--primary btn--md"
             onClick={() => setShowModal(true)}
           >
             CUENTA BANCARIA
@@ -74,7 +69,7 @@ const GiftsSection = () => {
             }}
             onClick={e => e.stopPropagation()}
           >
-            <button
+      <button
               style={{
                 position: 'absolute',
                 top: 16,
@@ -82,7 +77,7 @@ const GiftsSection = () => {
                 background: 'none',
                 border: 'none',
                 fontSize: '2.2rem',
-                color: '#bfa07a',
+        color: 'var(--primary)',
                 cursor: 'pointer',
                 lineHeight: 1
               }}

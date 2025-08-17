@@ -8,19 +8,18 @@ const CeremonyCentered = () => {
   const [showParkingModal, setShowParkingModal] = useState(false);
 
   return (
-    <section className="section" style={{background: 'transparent', boxShadow: 'none', border: 'none'}}>
+    <section className="section" style={{background: 'var(--surface)', boxShadow: '0 2px 12px rgba(0,0,0,0.04)', border: 'none'}}>
       <img src={iconAnillos} alt="Icono anillos" style={{width: '120px', opacity: 0.5, marginBottom: 0, marginTop: 0, display: 'block', marginLeft: 'auto', marginRight: 'auto'}} />
       <h2 
         className="lovestory text-center text-gris"
         style={{
-          fontFamily: 'Great Vibes, cursive',
-          fontSize: '2.5rem',
+          fontSize: 'clamp(1.6rem, 5vw, 2.1rem)',
           margin: '1rem 0 0.5rem 0',
           textAlign: 'center',
           width: '100%'
         }}
       >
-        Ceremonia & Fiesta
+        Ceremonia y Fiesta
       </h2>
       <img 
         src={tomateImg} 
@@ -34,12 +33,12 @@ const CeremonyCentered = () => {
       <p className="text-center text-gris" style={{textAlign: 'center', width: '100%'}}>
         "Tomate", Av. Infanta Isabel 555, CABA
       </p>
-      <div style={{display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '1.5rem'}}>
-        <button className="btn mb-2 text-uppercase rounded-pill btn-outline-dark btn-small p-2 pl-3 pr-3">
-          <i className="icon-calendar" aria-hidden="true"></i>  Agendar
+  <div className="ceremonyfiesta-buttons">
+        <button className="ceremonyfiesta-btn">
+          <i className="icon-calendar" aria-hidden="true"></i>  AGENDAR
         </button>
         <a
-          className="btn mb-2 text-uppercase rounded-pill btn-outline-dark btn-small p-2 pl-3 pr-3"
+          className="ceremonyfiesta-btn"
           href="https://www.google.com/maps/place/Av.+Infanta+Isabel+555,+CABA"
           target="_blank"
           rel="noopener noreferrer"
@@ -47,10 +46,10 @@ const CeremonyCentered = () => {
           <i className="icon-map-marker" aria-hidden="true"></i>  ¿CÓMO LLEGAR?
         </a>
         <button
-          className="btn mb-2 text-uppercase rounded-pill btn-outline-dark btn-small p-2 pl-3 pr-3"
+          className="ceremonyfiesta-btn"
           onClick={() => setShowParkingModal(true)}
         >
-          <i className="icon-car" aria-hidden="true"></i>  Estacionamiento
+          <i className="icon-car" aria-hidden="true"></i>  ESTACIONAMIENTO
         </button>
       </div>
       {showParkingModal && (
@@ -84,7 +83,7 @@ const CeremonyCentered = () => {
             }}
             onClick={e => e.stopPropagation()}
           >
-            <button
+      <button
               style={{
                 position: 'absolute',
                 top: 16,
@@ -92,7 +91,7 @@ const CeremonyCentered = () => {
                 background: 'none',
                 border: 'none',
                 fontSize: '2.2rem',
-                color: '#bfa07a',
+        color: 'var(--primary)',
                 cursor: 'pointer',
                 lineHeight: 1
               }}

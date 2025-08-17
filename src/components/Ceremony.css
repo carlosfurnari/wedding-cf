@@ -28,7 +28,7 @@
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
-  border: 4px solid #f3f0e8;
+  border: 4px solid var(--border);
   box-shadow: 0 2px 16px rgba(191,169,128,0.10);
   display: block;
   margin: 0 auto 1.2rem auto;
@@ -47,9 +47,9 @@
   margin-bottom: 0.5rem;
 }
 .ceremonyfiesta-title {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Dantina', sans-serif;
   font-size: 2.2rem;
-  color: #888;
+  color: var(--text);
   text-align: center;
   margin: 0.5rem 0 1.2rem 0;
   font-weight: 400;
@@ -58,7 +58,7 @@
 /* Eliminado duplicado ceremonyfiesta-img */
 .ceremonyfiesta-label {
   font-size: 0.9rem;
-  color: #bdbdbd;
+  color: var(--text-muted);
   letter-spacing: 0.1em;
   margin-top: 1.2rem;
   margin-bottom: 0.2rem;
@@ -74,7 +74,7 @@
 }
 .ceremonyfiesta-place {
   font-size: 1rem;
-  color: #888;
+  color: var(--text-muted);
   margin-bottom: 0.5rem;
   text-align: center;
 }
@@ -83,23 +83,60 @@
   justify-content: center;
   gap: 1rem;
   margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 .ceremonyfiesta-btn {
   background: #fff;
-  border: 1.5px solid #bfa980;
-  color: #bfa980;
-  border-radius: 24px;
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  font-family: 'Playfair Display', serif;
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+  border-radius: 28px;
+  padding: 0.6rem 1.2rem;
+  min-height: 44px; /* touch target */
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-  display: flex;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
+  text-align: center;
+  flex: 1 1 260px; /* mismo ancho base para 2 por fila cuando quepa */
+  max-width: 420px;
 }
 .ceremonyfiesta-btn:hover {
-  background: #bfa980;
+  background: var(--primary);
   color: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ceremonyfiesta-img,
+  .ceremonyfiesta-img-round {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ceremonyfiesta-img,
+  .ceremonyfiesta-img-round {
+    width: 140px;
+    height: 140px;
+  }
+  .ceremonyfiesta-buttons {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6rem;
+  }
+  .ceremonyfiesta-btn {
+  width: 100%;
+  justify-content: center;
+  flex: 0 0 auto; /* evita que crezca en columna y se haga gigante */
+  padding: 0.55rem 1rem; /* un poco menos de alto en mobile */
+  }
 }

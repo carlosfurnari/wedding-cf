@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import iconRSVP from '../assets/icon-rsvp-b.png';
-import bgWhite2 from '../assets/bg-white2.jpg';
+import './RSVPSectionFull.css';
 
 const RSVPSectionFull = () => {
   const [showModal, setShowModal] = useState(false);
@@ -47,14 +47,10 @@ const RSVPSectionFull = () => {
   };
 
   return (
-    <section
+  <section
       className="site-section"
       style={{
-        backgroundImage: `linear-gradient(rgba(255,255,255,0.5),rgba(240,240,240,1)), url(${bgWhite2})`,
-        backgroundColor: '#fff',
-        backgroundPosition: '50% 50%',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundColor: 'transparent',
         position: 'relative',
         minHeight: '60vh',
         display: 'flex',
@@ -66,7 +62,7 @@ const RSVPSectionFull = () => {
       <div
         className="rounded p-4"
         style={{
-          backgroundColor: 'rgba(250,250,250,0.8)',
+          backgroundColor: 'var(--surface-alt)',
           maxWidth: 650,
           margin: '2rem auto',
           textAlign: 'center',
@@ -87,7 +83,7 @@ const RSVPSectionFull = () => {
           Esperamos que puedas acompañarnos.<br />¡Confirmá tu asistencia antes del 20/10/2025!
         </p>
         <div style={{textAlign: 'center', width: '100%', marginBottom: '0.5rem'}}>
-          <button className="btn mb-2 text-uppercase rounded-pill btn-outline-dark btn-small"
+          <button className="btn btn--primary btn--md"
             style={{margin: '0 auto', display: 'inline-block', marginBottom: 0}}
             onClick={() => setShowModal(true)}>
             CONFIRMAR ASISTENCIA
@@ -130,42 +126,26 @@ const RSVPSectionFull = () => {
           >
             <button style={{
               position: 'absolute', top: 16, right: 18, background: 'none', border: 'none',
-              fontSize: '2.2rem', color: '#bfa07a', cursor: 'pointer', lineHeight: 1
+              fontSize: '2.2rem', color: 'var(--primary)', cursor: 'pointer', lineHeight: 1
             }} onClick={() => setShowModal(false)}>&times;</button>
             <h3 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1.2rem'}}>Confirmar asistencia</h3>
             <form style={{width: '100%'}} onSubmit={handleSubmit}>
-              <label style={{display: 'block', marginBottom: 8, fontWeight: 500, textAlign: 'left'}}>Nombre y apellido</label>
+              <label className="form-label" style={{textAlign: 'left'}}>Nombre y apellido</label>
               <input
                 type="text"
                 placeholder="Ingresá tu nombre completo"
                 value={guestName}
                 onChange={e => setGuestName(e.target.value)}
-                style={{
-                  width: '60%',
-                  maxWidth: 260,
-                  padding: '10px',
-                  borderRadius: 8,
-                  border: '1px solid #ccc',
-                  marginBottom: 18,
-                  display: 'block',
-                  marginLeft: 0
-                }}
+                className="form-control"
+                style={{ width: '60%', maxWidth: 260, marginBottom: 18, display: 'block', marginLeft: 0 }}
               />
 
-              <label style={{display: 'block', marginBottom: 8, fontWeight: 500}}>¿Tenés alguna restricción alimenticia?</label>
+              <label className="form-label">¿Tenés alguna restricción alimenticia?</label>
               <select
                 value={foodRestriction}
                 onChange={e => { setFoodRestriction(e.target.value); if(e.target.value !== 'Otras') setOtherRestriction(''); }}
-                style={{
-                  width: '60%',
-                  maxWidth: 260,
-                  padding: '10px',
-                  borderRadius: 8,
-                  border: '1px solid #ccc',
-                  marginBottom: 18,
-                  display: 'block',
-                  marginLeft: 0
-                }}
+                className="form-control"
+                style={{ width: '60%', maxWidth: 260, marginBottom: 18, display: 'block', marginLeft: 0 }}
               >
                 <option value="No">No</option>
                 <option value="Si, vegan@">Si, vegan@</option>
@@ -179,60 +159,47 @@ const RSVPSectionFull = () => {
                   placeholder="Especificá tu restricción"
                   value={otherRestriction}
                   onChange={e => setOtherRestriction(e.target.value)}
-                  style={{width: '100%', padding: '10px', borderRadius: 8, border: '1px solid #ccc', marginBottom: 18}}
+                  className="form-control"
+                  style={{ marginBottom: 18 }}
                 />
               )}
 
               <button
                 type="button"
                 onClick={addCompanion}
-                style={{
-                  marginBottom: 18,
-                  padding: '10px 16px',
-                  borderRadius: 8,
-                  background: '#eee',
-                  border: '1px solid #ccc',
-                  fontWeight: 500,
-                  color: '#6d4c1a'
-                }}
+                className="btn btn--secondary btn--sm"
+                style={{ marginBottom: 18 }}
               >
                 Agregar acompañante
               </button>
 
               {companions.map((companion, idx) => (
-                <div key={idx} style={{marginBottom: 24, padding: 12, border: '1px solid #eee', borderRadius: 8, background: '#fafafa', position: 'relative'}}>
-                  <label style={{display: 'block', marginBottom: 8, fontWeight: 500}}>Nombre y apellido del acompañante</label>
+                <div key={idx} className="companion-card" style={{marginBottom: 24, border: '1px solid var(--border)', borderRadius: 8, background: 'var(--surface-alt)'}}>
+                  <div className="companion-header" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 8}}>
+                    <label style={{display: 'block', margin: 0, fontWeight: 500}}>Nombre y apellido del acompañante</label>
+                    <button
+                      type="button"
+                      onClick={() => removeCompanion(idx)}
+                      className="companion-delete"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
                   <input
                     type="text"
                     placeholder="Ingresá el nombre completo"
                     value={companion.name}
                     onChange={e => updateCompanion(idx, "name", e.target.value)}
-                    style={{
-                      width: '60%',
-                      maxWidth: 260,
-                      padding: '10px',
-                      borderRadius: 8,
-                      border: '1px solid #ccc',
-                      marginBottom: 18,
-                      display: 'block',
-                      marginLeft: 0
-                    }}
+                    className="form-control"
+                    style={{ width: '60%', maxWidth: 260, marginBottom: 18, display: 'block', marginLeft: 0 }}
                   />
 
                   <label style={{display: 'block', marginBottom: 8, fontWeight: 500}}>¿Tiene alguna restricción alimenticia?</label>
                   <select
                     value={companion.foodRestriction}
                     onChange={e => updateCompanion(idx, "foodRestriction", e.target.value)}
-                    style={{
-                      width: '60%',
-                      maxWidth: 260,
-                      padding: '10px',
-                      borderRadius: 8,
-                      border: '1px solid #ccc',
-                      marginBottom: 18,
-                      display: 'block',
-                      marginLeft: 0
-                    }}
+                    className="form-control"
+                    style={{ width: '60%', maxWidth: 260, marginBottom: 18, display: 'block', marginLeft: 0 }}
                   >
                     <option value="No">No</option>
                     <option value="Si, vegan@">Si, vegan@</option>
@@ -246,22 +213,17 @@ const RSVPSectionFull = () => {
                       placeholder="Especificá la restricción"
                       value={companion.otherRestriction}
                       onChange={e => updateCompanion(idx, "otherRestriction", e.target.value)}
-                      style={{width: '100%', padding: '10px', borderRadius: 8, border: '1px solid #ccc', marginBottom: 18}}
+                      className="form-control"
+                      style={{ marginBottom: 18 }}
                     />
                   )}
-                  <button
-                    type="button"
-                    onClick={() => removeCompanion(idx)}
-                    style={{position: 'absolute', top: 8, right: 8, background: '#ffeaea', border: '1px solid #e0b4b4', borderRadius: 8, padding: '4px 10px', color: '#b00', fontWeight: 500, cursor: 'pointer'}}
-                  >
-                    Eliminar
-                  </button>
                 </div>
               ))}
 
               <button
                 type="submit"
-                style={{width: '100%', padding: '12px', borderRadius: 8, background: '#bfa07a', color: '#fff', border: 'none', fontWeight: 600, fontSize: '1.1rem', marginTop: 8, cursor: 'pointer'}}
+                className="btn btn--primary btn--md"
+                style={{ width: '100%', fontWeight: 600, fontSize: '1.05rem', marginTop: 8 }}
               >
                 Enviar confirmación
               </button>

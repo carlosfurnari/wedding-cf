@@ -1,11 +1,14 @@
 .gallery {
     padding: 50px 20px;
     text-align: center;
+    background: transparent;
 }
 
 .gallery h2 {
     font-size: 2rem;
     margin-bottom: 20px;
+    font-family: 'Dantina', sans-serif;
+    color: var(--text);
 }
 
 .gallery-images {
@@ -19,6 +22,19 @@
     width: 200px;
     height: 200px;
     object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+    .gallery { padding: 36px 16px; }
+    .gallery h2 { font-size: 1.6rem; }
+    .gallery-images img { width: 160px; height: 160px; }
+}
+
+@media (max-width: 480px) {
+    .gallery { padding: 28px 12px; }
+    .gallery h2 { font-size: 1.4rem; }
+    .gallery-images { gap: 10px; }
+    .gallery-images img { width: 46vw; height: 46vw; }
 }

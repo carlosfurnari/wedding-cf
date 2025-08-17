@@ -1,33 +1,75 @@
+/* Base y normalización ligera */
+:root {
+    --bg: #f9f6ef;
+    --surface: #ffffff;
+    --surface-alt: #faf9f5;
+    --primary: #bfa980;
+    --primary-hover: #a08c5b;
+    --text: #2E2A25;
+    --text-muted: #6B6B6B;
+    --border: #e7dfd2;
+    --success: #2E7D32;
+    --warning: #B26A00;
+    --danger: #B00020;
+}
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 body {
     font-family: 'Playfair Display', serif; /* Fuente elegante para títulos */
     margin: 0;
     padding: 0;
-    background-color: #fefcf4; /* Fondo beige claro */
-    color: #333; /* Texto oscuro */
+    background-color: var(--bg);
+    color: var(--text);
+    overflow-x: hidden; /* evita scroll horizontal en mobile */
+}
+
+/* Suaves transiciones entre secciones: separador sutil */
+.section + .section,
+.site-section + .site-section,
+.gifts-section + .gifts-section {
+    position: relative;
+}
+.section + .section::before,
+.site-section + .site-section::before,
+.gifts-section + .gifts-section::before {
+    content: '';
+    display: block;
+    height: 1px;
+    width: min(700px, 92vw);
+    margin: 0.5rem auto 0.5rem auto;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    opacity: 0.9;
 }
 
 h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-    color: #6b4226; /* Marrón elegante */
+    font-family: 'Dantina', sans-serif;
+    color: var(--text);
     margin: 0;
 }
 
 p {
     font-family: 'Roboto', sans-serif; /* Fuente moderna para texto */
-    color: #555;
+    color: var(--text-muted);
     line-height: 1.6;
     margin: 0;
 }
 
 a {
     text-decoration: none;
-    color: #6b4226;
+    color: var(--text);
 }
 
 button {
     font-family: 'Roboto', sans-serif;
-    background-color: #6b4226;
-    color: #fff;
+    background-color: var(--primary);
+    color: var(--primary-contrast, #fff);
     border: none;
     border-radius: 20px;
     padding: 10px 20px;
@@ -36,5 +78,34 @@ button {
 }
 
 button:hover {
-    background-color: #8c5a3c;
+    background-color: var(--primary-hover);
+}
+
+/* Medios y utilidades responsive */
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+    h2 { font-size: clamp(1.4rem, 4.5vw, 2rem); }
+    h3 { font-size: clamp(1.2rem, 4vw, 1.6rem); }
+    p  { font-size: clamp(0.95rem, 2.8vw, 1.05rem); }
+}
+
+@media (max-width: 480px) {
+    button {
+        min-height: 44px; /* objetivos táctiles accesibles */
+    }
+    .btn {
+        width: 100%; /* sólo botones de acción principales */
+    }
 }

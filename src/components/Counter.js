@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './Counter.css';
-import bgWhite1b from '../assets/bg-white1b.jpg';
 import iconAnillos from '../assets/icon-anillos-v2-b.png';
 
 const weddingDate = new Date('2025-11-29T19:30:00');
@@ -26,7 +25,7 @@ const Counter = () => {
   }, []);
 
   return (
-    <section className="counter-section" style={{backgroundImage: `url(${bgWhite1b})`}}>
+    <section className="counter-section">
       <div className="counter-overlay">
         <img src={iconAnillos} alt="Anillos" className="counter-icon" />
         <div className="counter-date">29 • 11 • 2025</div>
