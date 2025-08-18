@@ -1,9 +1,10 @@
 .site-section {
   padding: 0;
-  margin: 2rem auto;
-  border-radius: 16px;
-  max-width: 700px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  margin: 0;
+  border-radius: 0;
+  max-width: none;
+  width: 100vw;
+  box-shadow: none;
   position: relative;
 }
 .container {
@@ -82,12 +83,12 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .site-section { margin: 1.2rem 1rem; }
+  .site-section { margin: 0; width: 100vw; border-radius: 0; }
   .p-4 { padding: 1.2rem 1rem; }
 }
 
 @media (max-width: 480px) {
-  .site-section { margin: 1rem 0.75rem; border-radius: 12px; }
+  .site-section { margin: 0; width: 100vw; border-radius: 0; }
   .p-4 { padding: 1rem 0.75rem; }
   .btn { width: 100%; }
 }

@@ -1,13 +1,14 @@
 /* Centrado total de la sección */
 .ceremonyfiesta-section {
-  background: none;
+  background: transparent !important; /* deja ver el fondo aplicado a toda la sección */
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  box-shadow: none; /* sin sombra para que el fondo sea protagonista */
+  border: none;
   margin: 2rem auto;
   padding: 2rem 1.5rem;
   max-width: 700px;
   min-height: unset;
-  width: auto;
+  width: min(700px, 92vw);
   display: block;
   box-sizing: border-box;
   position: relative;
@@ -111,6 +112,60 @@
   background: var(--primary);
   color: #fff;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* Fondo de toda la sección de ceremonia (envolvente) */
+.ceremonyfiesta-bg {
+  width: 100%;
+  /* Full viewport like the hero */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 160px; /* reserve space for wave */
+  background-color: transparent;
+  background-attachment: scroll; /* safer on mobile */
+  position: relative;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.ceremonyfiesta-bg::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px; /* overlap slightly to avoid gaps */
+  height: 160px; /* taller wave */
+  background: url('../assets/wave-mid-brush.png') no-repeat 50% 100%;
+  background-size: 100% 100%; /* fill width and height */
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .ceremonyfiesta-bg {
+    min-height: 100vh;
+    padding-top: 1.5rem;
+    padding-bottom: 120px;
+  }
+  .ceremonyfiesta-bg::after { height: 120px; }
+}
+
+@media (max-width: 480px) {
+  .ceremonyfiesta-bg {
+    min-height: 100vh;
+    padding-top: 1.2rem;
+    padding-bottom: 96px;
+  }
+  .ceremonyfiesta-bg::after { height: 96px; }
+}
+
+/* Ensure the inner card is above the wave */
+.ceremonyfiesta-section {
+  position: relative;
+  z-index: 1;
 }
 
 /* Responsive */

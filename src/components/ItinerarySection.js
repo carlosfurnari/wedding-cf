@@ -2,10 +2,8 @@ import React from 'react';
 import iconTimeline from '../assets/icon-timeline.png';
 import iconCeremonia from '../assets/timeline-icon-ceremonia.png';
 import iconRecepcion from '../assets/timeline-icon-recepcion.png';
-import iconNovios from '../assets/timeline-icon-novios-a.png';
 import iconFin from '../assets/timeline-icon-last-call.png';
 import iconCena from '../assets/timeline-icon-cena.png';
-import iconDisco from '../assets/timeline-icon-disco.png';
 import iconBrindis from '../assets/timeline-icon-brindis.png';
 import styles from './ItinerarySection.module.css';
 

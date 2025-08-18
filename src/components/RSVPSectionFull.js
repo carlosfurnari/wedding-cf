@@ -60,31 +60,26 @@ const RSVPSectionFull = () => {
         position: 'relative',
         minHeight: '60vh',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
+        padding: "clamp(64px, calc(min(100vw, 480px) * 0.38 + 8px), 180px) 1rem 2rem 1rem", // menos espacio: acercar contenido
+        backgroundImage: "url('/assets/passion-2.png')",
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center -8px', // subir un poco la imagen
+  backgroundSize: 'min(100vw, 480px) auto', // imagen aún más grande
+        boxSizing: 'border-box'
       }}
       id="rsvp"
     >
-      <div
-        className="rounded p-4"
-        style={{
-          backgroundColor: 'var(--surface-alt)',
-          maxWidth: 650,
-          margin: '2rem auto',
-          textAlign: 'center',
-          padding: '3rem 2.5rem',
-          boxSizing: 'border-box',
-          borderRadius: 24,
-        }}
-      >
         <img
           className="img-fluid mb-0"
           src={iconRSVP}
           width="80"
           alt="RSVP Icon"
-          style={{ opacity: 0.5, display: 'block', marginLeft: 'auto', marginRight: 'auto', marginBottom: '2rem' }}
+          style={{ opacity: 0.5, display: 'block', marginLeft: 'auto', marginRight: 'auto', marginBottom: '0.75rem' }}
         />
-        <h2 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1.5rem' }}>Confirmación</h2>
+        <h2 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1rem' }}>Confirmación</h2>
         <p className="text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '2.2rem' }}>
           Esperamos que puedas acompañarnos.<br />¡Confirmá tu asistencia antes del 20/10/2025!
         </p>
@@ -100,7 +95,6 @@ const RSVPSectionFull = () => {
             </p>
           )}
         </div>
-      </div>
       {showModal && (
         <div
           style={{
@@ -242,6 +236,20 @@ const RSVPSectionFull = () => {
           </div>
         </div>
       )}
+      {/* Decorative bottom flourish rotated */}
+      <img
+        src="/assets/passion-1.png"
+        alt="Decoración inferior"
+        style={{
+          display: 'block',
+          width: 'min(90vw, 420px)',
+          height: 'auto',
+          margin: '2rem auto 0',
+          transform: 'rotate(180deg)',
+          pointerEvents: 'none',
+          opacity: 0.95
+        }}
+      />
     </section>
   );
 };

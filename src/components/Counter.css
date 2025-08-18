@@ -2,14 +2,22 @@
   width: 100vw;
   height: 100vh;
   min-height: 100vh;
-  background: var(--bg);
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
+  /* Fondo a pantalla completa con la imagen fondoFull */
+  background: var(--bg) url('../assets/fondoFull2.png') no-repeat 50% 50% / cover;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+.counter-section::before {
+  /* Velo sutil para mejorar legibilidad sobre la foto */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(249, 246, 239, 0.38); /* #f9f6ef con opacidad */
+  pointer-events: none;
 }
 .counter-overlay {
   background: transparent;
@@ -21,6 +29,8 @@
   align-items: center;
   max-width: 340px;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 .counter-icon {
   width: 60px;
@@ -108,6 +118,10 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .counter-section {
+    /* En mobile usar la imagen vertical fondoCel */
+    background: var(--bg) url('../assets/fondoCel.jpg') no-repeat 50% 50% / cover;
+  }
   .counter-overlay { max-width: 90vw; }
   .counter-title { font-size: 1.8rem; }
   .counter-subtitle { font-size: 0.95rem; }

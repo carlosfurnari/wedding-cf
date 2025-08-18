@@ -1,21 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.e96c83c5.css",
-    "main.js": "/static/js/main.178f9f6e.js",
+    "main.css": "/static/css/main.b8b0f352.css",
+    "main.js": "/static/js/main.a24b910f.js",
+    "static/media/fondoFull2.png": "/static/media/fondoFull2.97316b2a0ec03487d3d4.png",
     "static/media/mapa1.png": "/static/media/mapa1.14b0afd459122143b132.png",
+    "static/media/wave-mid-brush.png": "/static/media/wave-mid-brush.d63cdaa3251c37de0b9e.png",
     "static/media/tomate.jpeg": "/static/media/tomate.cf3b38d6cfd09a9dad31.jpeg",
-    "static/media/timeline-icon-disco.png": "/static/media/timeline-icon-disco.e9ee0936a02f06959c91.png",
+    "static/media/fondoCel.jpg": "/static/media/fondoCel.cd6c9f68d1a1534aba28.jpg",
+    "static/media/bg25.jpg": "/static/media/bg25.369029517aa7ca533b55.jpg",
     "static/media/dress-code2.jpg": "/static/media/dress-code2.2bdb1a2565cd920677c5.jpg",
     "static/media/dress-code6.jpg": "/static/media/dress-code6.1a61939437a4c254d78c.jpg",
     "static/media/dress-code3.jpg": "/static/media/dress-code3.ac99809126db209e01c4.jpg",
     "static/media/dress-code4.jpg": "/static/media/dress-code4.cff0bba25da2918cb02d.jpg",
     "static/media/dress-code5.jpg": "/static/media/dress-code5.b473a6c9fe4e6aee43bb.jpg",
     "index.html": "/index.html",
-    "main.e96c83c5.css.map": "/static/css/main.e96c83c5.css.map",
-    "main.178f9f6e.js.map": "/static/js/main.178f9f6e.js.map"
+    "main.b8b0f352.css.map": "/static/css/main.b8b0f352.css.map",
+    "main.a24b910f.js.map": "/static/js/main.a24b910f.js.map"
   },
   "entrypoints": [
-    "static/css/main.e96c83c5.css",
-    "static/js/main.178f9f6e.js"
+    "static/css/main.b8b0f352.css",
+    "static/js/main.a24b910f.js"
   ]
 }

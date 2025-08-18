@@ -19,6 +19,7 @@
 html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    height: 100%;
 }
 
 body {
@@ -28,7 +29,20 @@ body {
     background-color: var(--bg);
     color: var(--text);
     overflow-x: hidden; /* evita scroll horizontal en mobile */
+    height: 100%;
+    /* Scroll snapping for full-screen sections at the top */
+    /* Enable scroll snap by default; can be reduced on very small screens if needed */
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: contain;
 }
+
+    /* On desktop/tablet enforce mandatory snap for a crisp section-to-section transition */
+    @media (min-width: 769px) {
+        body {
+            scroll-snap-type: y mandatory;
+        }
+    }
 
 /* Suaves transiciones entre secciones: separador sutil */
 .section + .section,

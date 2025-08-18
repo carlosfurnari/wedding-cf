@@ -31,7 +31,7 @@ const Counter = () => {
         <div className="counter-date">29 • 11 • 2025</div>
         <div className="counter-title">Flor <span className="counter-heart">&#9825;</span> Carlos</div>
         <div className="counter-subtitle">¡NOS CASAMOS!</div>
-        <div className="counter-label">falta</div>
+        <div className="counter-label">faltan</div>
         <div className="counter-countdown">
           <div className="counter-item">
             <div className="counter-number">{timeLeft.days}</div>
