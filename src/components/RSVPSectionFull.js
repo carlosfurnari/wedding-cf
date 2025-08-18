@@ -63,15 +63,25 @@ const RSVPSectionFull = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        padding: "clamp(64px, calc(min(100vw, 480px) * 0.38 + 8px), 180px) 1rem 2rem 1rem", // menos espacio: acercar contenido
-        backgroundImage: "url('/assets/passion-2.png')",
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center -8px', // subir un poco la imagen
-  backgroundSize: 'min(100vw, 480px) auto', // imagen aún más grande
+  padding: '0 1rem clamp(72px, 14vw, 160px) 1rem', // aún más espacio antes de la decoración inferior
         boxSizing: 'border-box'
       }}
       id="rsvp"
     >
+        {/* Imagen superior que preserva su relación de aspecto */}
+        <img
+          src="/assets/passion-2.png"
+          alt="Decoración superior"
+          style={{
+            display: 'block',
+            width: 'min(100vw, 480px)',
+            height: 'auto',
+            margin: 0,
+            marginBottom: 'clamp(20px, 6vw, 56px)',
+            pointerEvents: 'none',
+            userSelect: 'none'
+          }}
+        />
         <img
           className="img-fluid mb-0"
           src={iconRSVP}
@@ -242,10 +252,14 @@ const RSVPSectionFull = () => {
         alt="Decoración inferior"
         style={{
           display: 'block',
+          position: 'absolute',
+          left: '50%',
+          bottom: '-1px', // asegurar que llegue al borde inferior de la sección
+          transform: 'translateX(-50%) rotate(180deg)',
+          zIndex: 1,
           width: 'min(90vw, 420px)',
           height: 'auto',
-          margin: '2rem auto 0',
-          transform: 'rotate(180deg)',
+          margin: 0,
           pointerEvents: 'none',
           opacity: 0.95
         }}
