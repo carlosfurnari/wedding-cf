@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.e96c83c5.css",
-    "main.js": "/static/js/main.ecadacea.js",
+    "main.js": "/static/js/main.178f9f6e.js",
     "static/media/mapa1.png": "/static/media/mapa1.14b0afd459122143b132.png",
     "static/media/tomate.jpeg": "/static/media/tomate.cf3b38d6cfd09a9dad31.jpeg",
     "static/media/timeline-icon-disco.png": "/static/media/timeline-icon-disco.e9ee0936a02f06959c91.png",
@@ -12,10 +12,10 @@
     "static/media/dress-code5.jpg": "/static/media/dress-code5.b473a6c9fe4e6aee43bb.jpg",
     "index.html": "/index.html",
     "main.e96c83c5.css.map": "/static/css/main.e96c83c5.css.map",
-    "main.ecadacea.js.map": "/static/js/main.ecadacea.js.map"
+    "main.178f9f6e.js.map": "/static/js/main.178f9f6e.js.map"
   },
   "entrypoints": [
     "static/css/main.e96c83c5.css",
-    "static/js/main.ecadacea.js"
+    "static/js/main.178f9f6e.js"
   ]
 }

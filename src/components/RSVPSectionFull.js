@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import iconRSVP from '../assets/icon-rsvp-b.png';
 import './RSVPSectionFull.css';
+import { getOrCreateDeviceId, getRsvpSubmitted, markRsvpSubmitted } from '../utils/device';
 
 const RSVPSectionFull = () => {
   const [showModal, setShowModal] = useState(false);
@@ -8,6 +9,8 @@ const RSVPSectionFull = () => {
   const [foodRestriction, setFoodRestriction] = useState("No");
   const [otherRestriction, setOtherRestriction] = useState("");
   const [companions, setCompanions] = useState([]);
+  const deviceId = useMemo(() => getOrCreateDeviceId(), []);
+  const submitted = useMemo(() => getRsvpSubmitted(), []);
 
   const addCompanion = () => {
     setCompanions([...companions, { name: "", foodRestriction: "No", otherRestriction: "" }]);
@@ -32,7 +35,9 @@ const RSVPSectionFull = () => {
       guestName,
       foodRestriction,
       otherRestriction,
-      companions
+      companions,
+      deviceId,
+      ua: navigator.userAgent
     };
     try {
       await fetch('/.netlify/functions/rsvp', {
@@ -40,6 +45,7 @@ const RSVPSectionFull = () => {
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }
       });
+      markRsvpSubmitted({ deviceId, guestName, companionsCount: companions.length });
       setShowModal(false);
     } catch (err) {
       alert('Error al enviar: ' + err.message);
@@ -85,9 +91,14 @@ const RSVPSectionFull = () => {
         <div style={{textAlign: 'center', width: '100%', marginBottom: '0.5rem'}}>
           <button className="btn btn--primary btn--md"
             style={{margin: '0 auto', display: 'inline-block', marginBottom: 0}}
-            onClick={() => setShowModal(true)}>
+            onClick={() => setShowModal(true)} disabled={!!submitted}>
             CONFIRMAR ASISTENCIA
           </button>
+          {submitted && (
+            <p style={{marginTop: 8, fontSize: '0.9rem', color: 'var(--text-muted)'}}>
+              Ya enviaste tu confirmación desde este dispositivo.
+            </p>
+          )}
         </div>
       </div>
       {showModal && (
