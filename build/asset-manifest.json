@@ -1,10 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.83ff79b7.css",
+    "main.css": "/static/css/main.e96c83c5.css",
     "main.js": "/static/js/main.ecadacea.js",
     "static/media/mapa1.png": "/static/media/mapa1.14b0afd459122143b132.png",
     "static/media/tomate.jpeg": "/static/media/tomate.cf3b38d6cfd09a9dad31.jpeg",
-    "static/media/fondo-papel.jpg": "/static/media/fondo-papel.5fd4419c0f592a6a4798.jpg",
     "static/media/timeline-icon-disco.png": "/static/media/timeline-icon-disco.e9ee0936a02f06959c91.png",
     "static/media/dress-code2.jpg": "/static/media/dress-code2.2bdb1a2565cd920677c5.jpg",
     "static/media/dress-code6.jpg": "/static/media/dress-code6.1a61939437a4c254d78c.jpg",
@@ -12,11 +11,11 @@
     "static/media/dress-code4.jpg": "/static/media/dress-code4.cff0bba25da2918cb02d.jpg",
     "static/media/dress-code5.jpg": "/static/media/dress-code5.b473a6c9fe4e6aee43bb.jpg",
     "index.html": "/index.html",
-    "main.83ff79b7.css.map": "/static/css/main.83ff79b7.css.map",
+    "main.e96c83c5.css.map": "/static/css/main.e96c83c5.css.map",
     "main.ecadacea.js.map": "/static/js/main.ecadacea.js.map"
   },
   "entrypoints": [
-    "static/css/main.83ff79b7.css",
+    "static/css/main.e96c83c5.css",
     "static/js/main.ecadacea.js"
   ]
 }

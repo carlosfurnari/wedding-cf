@@ -26,10 +26,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--bg);
-    background-image: url('./assets/fondo-papel.jpg');
-    background-repeat: repeat;
-    background-position: top center;
-    background-size: auto;
     color: var(--text);
     overflow-x: hidden; /* evita scroll horizontal en mobile */
 }
