@@ -4,7 +4,8 @@
   border-radius: 16px;
   box-shadow: none; /* sin sombra para que el fondo sea protagonista */
   border: none;
-  margin: 2rem auto;
+  margin: 0 auto; /* centered inside flex container */
+  transform: translateY(-10px); /* move slightly up visually */
   padding: 2rem 1.5rem;
   max-width: 700px;
   min-height: unset;
@@ -82,19 +83,19 @@
 .ceremonyfiesta-buttons {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+  flex-wrap: nowrap; /* keep in a single line on desktop/tablet */
 }
 .ceremonyfiesta-btn {
   background: #fff;
   border: 1.5px solid var(--primary);
   color: var(--primary);
   border-radius: 28px;
-  padding: 0.6rem 1.2rem;
-  min-height: 44px; /* touch target */
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
+  padding: 0.48rem 0.9rem; /* smaller button */
+  min-height: 38px; /* still tap-friendly */
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
   text-transform: none;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
@@ -105,8 +106,8 @@
   justify-content: center;
   gap: 0.5rem;
   text-align: center;
-  flex: 1 1 260px; /* mismo ancho base para 2 por fila cuando quepa */
-  max-width: 420px;
+  flex: 0 0 auto; /* don't grow, keep compact */
+  max-width: none;
 }
 .ceremonyfiesta-btn:hover {
   background: var(--primary);
@@ -119,16 +120,30 @@
   width: 100%;
   /* Full viewport like the hero */
   min-height: 100vh;
+  min-height: 100svh; /* modern mobile viewport units */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 2rem;
-  padding-bottom: 160px; /* reserve space for wave */
+  padding: 0; /* avoid extra height beyond viewport */
   background-color: transparent;
   background-attachment: scroll; /* safer on mobile */
   position: relative;
   scroll-snap-align: center;
   scroll-snap-stop: always;
+}
+
+.ceremonyfiesta-bg::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px; /* overlap slightly to avoid gaps */
+  height: 160px; /* top wave height */
+  background: url('../assets/wave-mid-brush.png') no-repeat 50% 0;
+  background-size: 100% 100%; /* fill width and height */
+  transform: rotate(180deg); /* rotate 180° vertically */
+  pointer-events: none;
+  z-index: 0;
 }
 
 .ceremonyfiesta-bg::after {
@@ -146,19 +161,21 @@
 
 @media (max-width: 768px) {
   .ceremonyfiesta-bg {
-    min-height: 100vh;
-    padding-top: 1.5rem;
-    padding-bottom: 120px;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 0;
   }
+  .ceremonyfiesta-bg::before { height: 120px; }
   .ceremonyfiesta-bg::after { height: 120px; }
 }
 
 @media (max-width: 480px) {
   .ceremonyfiesta-bg {
-    min-height: 100vh;
-    padding-top: 1.2rem;
-    padding-bottom: 96px;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 0;
   }
+  .ceremonyfiesta-bg::before { height: 96px; }
   .ceremonyfiesta-bg::after { height: 96px; }
 }
 
@@ -186,7 +203,7 @@
   .ceremonyfiesta-buttons {
   flex-direction: column;
   align-items: stretch;
-  gap: 0.6rem;
+  gap: 0.6rem; /* stack on mobile */
   }
   .ceremonyfiesta-btn {
   width: 100%;
