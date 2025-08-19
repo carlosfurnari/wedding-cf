@@ -3,9 +3,14 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  background: transparent;
+  /* Decorative background */
+  background: url('../assets/lovestory-2.png') no-repeat left top;
+  background-size: clamp(560px, 70vw, 1200px) auto;
+  /* Nudge a bit to the right */
+  background-position: clamp(-150px, -8vw, -48px) top;
   padding: 64px 0 64px 0;
 }
+/* Decorative image now handled in component via <img> */
 .container {
   max-width: 900px;
   margin: 0 auto;
@@ -213,6 +218,17 @@
 
 @media (max-width: 480px) {
   .sectionWrapper { padding: 36px 0; }
+  /* Decoration sizing handled inline in component */
+  /* Keep content flush on mobile to preserve alignment */
+  .timelineContent { padding: 0; }
+}
+@media (max-width: 480px) {
+  .sectionWrapper {
+    padding: 36px 0;
+  /* Nudge a bit to the right on small screens */
+  background-position: clamp(-84px, -12vw, -30px) top;
+    background-size: clamp(420px, 85vw, 900px) auto;
+  }
   /* Keep content flush on mobile to preserve alignment */
   .timelineContent { padding: 0; }
 }
