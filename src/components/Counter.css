@@ -102,11 +102,21 @@
 }
 .counter-number {
   font-family: 'Roboto', Arial, sans-serif;
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 4.2vw, 1.9rem);
   color: var(--text);
   font-weight: 400;
   margin-bottom: 0.2rem;
   letter-spacing: 0.04em;
+  /* Circle styling */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(56px, 9vw, 72px);
+  height: clamp(56px, 9vw, 72px);
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  line-height: 1;
+  background: transparent;
 }
 .counter-text {
   font-size: 0.8rem;
@@ -126,7 +136,11 @@
   .counter-title { font-size: 1.8rem; }
   .counter-subtitle { font-size: 0.95rem; }
   .counter-countdown { gap: 1rem; }
-  .counter-number { font-size: 1.7rem; }
+  .counter-number {
+    font-size: 1.7rem;
+    width: clamp(52px, 12vw, 64px);
+    height: clamp(52px, 12vw, 64px);
+  }
   .counter-text { font-size: 0.75rem; }
 }
 
@@ -135,6 +149,10 @@
   .counter-date { font-size: 1rem; }
   .counter-subtitle { font-size: 0.9rem; }
   .counter-item { min-width: 52px; }
-  .counter-number { font-size: 1.5rem; }
+  .counter-number {
+    font-size: 1.5rem;
+    width: clamp(48px, 16vw, 56px);
+    height: clamp(48px, 16vw, 56px);
+  }
   .counter-text { font-size: 0.7rem; }
 }

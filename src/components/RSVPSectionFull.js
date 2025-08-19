@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import iconRSVP from '../assets/icon-rsvp-b.png';
 import './RSVPSectionFull.css';
-import { getOrCreateDeviceId, getRsvpSubmitted, markRsvpSubmitted } from '../utils/device';
+import { getOrCreateDeviceId, getRsvpSubmitted, markRsvpSubmitted, getRsvpDraft, saveRsvpDraft, clearRsvpDraft } from '../utils/device';
 
 const RSVPSectionFull = () => {
   const [showModal, setShowModal] = useState(false);
@@ -11,6 +11,22 @@ const RSVPSectionFull = () => {
   const [companions, setCompanions] = useState([]);
   const deviceId = useMemo(() => getOrCreateDeviceId(), []);
   const submitted = useMemo(() => getRsvpSubmitted(), []);
+
+  // Load draft on mount
+  useEffect(() => {
+    const draft = getRsvpDraft();
+    if (draft) {
+      setGuestName(draft.guestName || "");
+      setFoodRestriction(draft.foodRestriction || "No");
+      setOtherRestriction(draft.otherRestriction || "");
+      setCompanions(Array.isArray(draft.companions) ? draft.companions : []);
+    }
+  }, []);
+
+  // Auto-save draft on changes
+  useEffect(() => {
+    saveRsvpDraft({ guestName, foodRestriction, otherRestriction, companions });
+  }, [guestName, foodRestriction, otherRestriction, companions]);
 
   const addCompanion = () => {
     setCompanions([...companions, { name: "", foodRestriction: "No", otherRestriction: "" }]);
@@ -46,6 +62,7 @@ const RSVPSectionFull = () => {
         headers: { 'Content-Type': 'application/json' }
       });
       markRsvpSubmitted({ deviceId, guestName, companionsCount: companions.length });
+  clearRsvpDraft();
       setShowModal(false);
     } catch (err) {
       alert('Error al enviar: ' + err.message);

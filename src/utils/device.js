@@ -65,3 +65,40 @@ export function getRsvpSubmitted() {
     return JSON.parse(raw);
   } catch (e) { return null; }
 }
+
+// RSVP draft helpers
+export function saveRsvpDraft(draft = {}) {
+  try {
+    const payload = JSON.stringify(draft);
+    localStorage.setItem('rsvp_draft', payload);
+  setCookie('rsvp_draft', '1', 36500); // ~100 años
+  } catch (e) {}
+}
+
+export function getRsvpDraft() {
+  try {
+    const raw = localStorage.getItem('rsvp_draft');
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    // Basic shape guard
+    const safe = {
+      guestName: parsed?.guestName || '',
+      foodRestriction: parsed?.foodRestriction || 'No',
+      otherRestriction: parsed?.otherRestriction || '',
+      companions: Array.isArray(parsed?.companions) ? parsed.companions.map(c => ({
+        name: c?.name || '',
+        foodRestriction: c?.foodRestriction || 'No',
+        otherRestriction: c?.otherRestriction || ''
+      })) : []
+    };
+    return safe;
+  } catch (e) { return null; }
+}
+
+export function clearRsvpDraft() {
+  try {
+    localStorage.removeItem('rsvp_draft');
+    // Expire cookie
+    setCookie('rsvp_draft', '', -1);
+  } catch (e) {}
+}
