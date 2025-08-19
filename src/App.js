@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 import Counter from './components/Counter';
 import CeremonyCentered from './components/CeremonyCentered';
-import Section from './components/Section';
 import RSVPSectionFull from './components/RSVPSectionFull';
 import DressSection from './components/DressSection';
 
