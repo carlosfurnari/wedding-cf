@@ -1,24 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.b8b0f352.css",
-    "main.js": "/static/js/main.a24b910f.js",
+    "main.css": "/static/css/main.7818d309.css",
+    "main.js": "/static/js/main.d5dd09a2.js",
     "static/media/fondoFull2.png": "/static/media/fondoFull2.97316b2a0ec03487d3d4.png",
     "static/media/mapa1.png": "/static/media/mapa1.14b0afd459122143b132.png",
     "static/media/wave-mid-brush.png": "/static/media/wave-mid-brush.d63cdaa3251c37de0b9e.png",
     "static/media/tomate.jpeg": "/static/media/tomate.cf3b38d6cfd09a9dad31.jpeg",
     "static/media/fondoCel.jpg": "/static/media/fondoCel.cd6c9f68d1a1534aba28.jpg",
     "static/media/bg25.jpg": "/static/media/bg25.369029517aa7ca533b55.jpg",
+    "static/media/lovestory-2.png": "/static/media/lovestory-2.a76825a5d461703e9380.png",
+    "static/media/lovestory-1.png": "/static/media/lovestory-1.b4050b1934e5a16d669e.png",
     "static/media/dress-code2.jpg": "/static/media/dress-code2.2bdb1a2565cd920677c5.jpg",
     "static/media/dress-code6.jpg": "/static/media/dress-code6.1a61939437a4c254d78c.jpg",
     "static/media/dress-code3.jpg": "/static/media/dress-code3.ac99809126db209e01c4.jpg",
     "static/media/dress-code4.jpg": "/static/media/dress-code4.cff0bba25da2918cb02d.jpg",
     "static/media/dress-code5.jpg": "/static/media/dress-code5.b473a6c9fe4e6aee43bb.jpg",
     "index.html": "/index.html",
-    "main.b8b0f352.css.map": "/static/css/main.b8b0f352.css.map",
-    "main.a24b910f.js.map": "/static/js/main.a24b910f.js.map"
+    "main.7818d309.css.map": "/static/css/main.7818d309.css.map",
+    "main.d5dd09a2.js.map": "/static/js/main.d5dd09a2.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8b0f352.css",
-    "static/js/main.a24b910f.js"
+    "static/css/main.7818d309.css",
+    "static/js/main.d5dd09a2.js"
   ]
 }

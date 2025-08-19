@@ -10,7 +10,7 @@
   background-size: clamp(560px, 70vw, 1200px) auto;
   /* Nudge a bit to the right */
   background-position: clamp(-150px, -8vw, -48px) top;
-  padding: clamp(14px, 3vw, 28px) 0 0 0; /* taller top, no bottom padding so bottom image is flush */
+  padding: calc(clamp(14px, 3vw, 28px) + env(safe-area-inset-top, 0px)) 0 0 0; /* add safe-area and taller top */
 }
 /* Decorative image now handled in component via <img> */
 .container {
@@ -44,7 +44,7 @@
   content: '';
   position: absolute;
   left: 50%;
-  top: 0;
+  top: 12px; /* shift line start slightly to avoid hitting top icon/deco */
   transform: translateX(-50%);
   width: 2px;
   height: 93%;
@@ -175,26 +175,77 @@
   margin: 0;
 }
 @media (max-width: 700px) {
+  /* Allow titles to wrap on mobile so long labels (e.g., "Torta y Brindis") use two lines */
+  .title {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+  line-height: 1.4; /* extra interline spacing to avoid overlapping strokes */
+  }
   .timeline {
   max-width: 98vw;
-  padding: 0;
+  padding: 40px 0 0 0; /* reduced top spacing to tighten gap below header */
   }
+  .headerRow { margin-bottom: 1.5rem; }
+  .timeline::before { top: 40px; }
+  /* add top padding to the container on mobile only */
+  .container { padding: 56px 2vw 0; }
   .timelineItem {
     grid-template-columns: 1fr 48px 1fr;
     gap: 12px;
   }
-  .timelineContent { max-width: 90vw; height: 48px; grid-row: 1; }
+  .timelineContent {
+    max-width: 90vw;
+    height: auto; /* allow content height */
+    min-height: 48px; /* match icon size */
+    grid-row: 1;
+    display: flex; /* center content vertically */
+    align-items: center;
+    position: relative; /* anchor mobile arrows */
+  }
   .timelineIcon {
     width: 48px;
     height: 48px;
     grid-row: 1;
   }
+  /* add extra spacing for the very first icon to clear top deco */
+  .timelineItem:first-child .timelineIcon { margin-top: 16px; }
   .timelineIconImg {
     width: 32px;
     height: 32px;
   }
   .timelineItem:nth-child(odd) .contentInner { padding-right: 10px; }
   .timelineItem:nth-child(even) .contentInner { padding-left: 10px; }
+  /* remove absolute centering for mobile to avoid text shifting upward */
+  .contentInner {
+    position: relative;
+    top: auto;
+    transform: none;
+  }
+  /* disable the old inner arrows on mobile */
+  .contentInner::before,
+  .contentInner::after { content: none; }
+  /* add mobile arrows centered with the icon */
+  .timelineContent::before,
+  .timelineContent::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0; height: 0; z-index: 1;
+  }
+  .timelineItem:nth-child(odd) .timelineContent::after {
+    right: -8px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid rgba(34,34,34,0.18);
+  }
+  .timelineItem:nth-child(even) .timelineContent::before {
+    left: -8px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid rgba(34,34,34,0.18);
+  }
   .timelineItem:nth-child(odd) .contentInner::after {
     right: -8px;
     border-top-width: 5px;
@@ -212,24 +263,22 @@
   .timeline {
     max-width: 98vw;
   }
-  .container {
-    padding: 0 2vw;
-  }
+  .container { padding: 56px 2vw 0; }
 }
 
 @media (max-width: 480px) {
-  .sectionWrapper { padding: 14px 0 0 0; }
-  /* Decoration sizing handled inline in component */
-  /* Keep content flush on mobile to preserve alignment */
-  .timelineContent { padding: 0; }
-}
-@media (max-width: 480px) {
+  /* Slightly tighter title leading on very small screens */
+  .title { line-height: 1.36; }
   .sectionWrapper {
-    padding: 14px 0 0 0; /* top space only; bottom flush so image reaches the edge */
-  /* Nudge a bit to the right on small screens */
-  background-position: clamp(-84px, -12vw, -30px) top;
+    padding-top: calc(64px + env(safe-area-inset-top, 0px));
+    padding-bottom: 0;
+    /* Nudge a bit to the right on small screens */
+    background-position: clamp(-84px, -12vw, -30px) top;
     background-size: clamp(420px, 85vw, 900px) auto;
   }
-  /* Keep content flush on mobile to preserve alignment */
+  .headerRow { margin-bottom: 1.25rem; }
+  .timeline { padding-top: 40px; }
+  .timeline::before { top: 40px; }
+  .timelineItem:first-child .timelineIcon { margin-top: 12px; }
   .timelineContent { padding: 0; }
 }

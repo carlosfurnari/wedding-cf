@@ -69,6 +69,9 @@ const RSVPSectionFull = () => {
     }
   };
 
+  // Simple viewport check for mobile-only adjustments
+  const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 480px)').matches;
+
   return (
   <section
       className="site-section"
@@ -131,11 +134,16 @@ const RSVPSectionFull = () => {
             right: 0,
             bottom: 0,
             background: 'rgba(0,0,0,0.45)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            display: 'grid',
+            placeItems: 'center',
             zIndex: 1000,
-            overflowY: 'auto'
+            overflowY: 'auto',
+            overflowX: 'hidden',
+            padding: isMobile ? '12px' : '16px',
+            paddingLeft: isMobile ? 'max(12px, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))' : 'max(16px, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))',
+            paddingRight: isMobile ? 'max(12px, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))' : 'max(16px, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))',
+            scrollbarGutter: 'stable both-edges',
+            boxSizing: 'border-box'
           }}
           onClick={() => setShowModal(false)}
         >
@@ -143,16 +151,21 @@ const RSVPSectionFull = () => {
             style={{
               background: '#fff',
               borderRadius: 24,
-              padding: '32px 24px 24px 24px',
-              maxWidth: 500,
-              width: '95vw',
+              padding: isMobile ? '24px 16px 16px 16px' : '32px 24px 24px 24px',
+              boxSizing: 'border-box',
+              maxWidth: isMobile ? 'min(360px, 100%)' : 'min(500px, 100%)',
+              width: '100%', // fill overlay content width; maxWidth narrows it on mobile
               boxShadow: '0 4px 32px rgba(0,0,0,0.12)',
               position: 'relative',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               maxHeight: '90vh',
-              overflowY: 'auto'
+              overflowY: 'auto',
+              overflowX: 'hidden',
+              margin: '0 auto',
+              wordBreak: 'break-word',
+              overflowWrap: 'anywhere'
             }}
             onClick={e => e.stopPropagation()}
           >
@@ -169,7 +182,7 @@ const RSVPSectionFull = () => {
                 value={guestName}
                 onChange={e => setGuestName(e.target.value)}
                 className="form-control"
-                style={{ width: '60%', maxWidth: 260, marginBottom: 18, display: 'block', marginLeft: 0 }}
+                style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
               />
 
               <label className="form-label">¿Tenés alguna restricción alimenticia?</label>
@@ -177,7 +190,7 @@ const RSVPSectionFull = () => {
                 value={foodRestriction}
                 onChange={e => { setFoodRestriction(e.target.value); if(e.target.value !== 'Otras') setOtherRestriction(''); }}
                 className="form-control"
-                style={{ width: '60%', maxWidth: 260, marginBottom: 18, display: 'block', marginLeft: 0 }}
+                style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
               >
                 <option value="No">No</option>
                 <option value="Si, vegan@">Si, vegan@</option>
@@ -192,7 +205,7 @@ const RSVPSectionFull = () => {
                   value={otherRestriction}
                   onChange={e => setOtherRestriction(e.target.value)}
                   className="form-control"
-                  style={{ marginBottom: 18 }}
+                  style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
                 />
               )}
 
@@ -223,7 +236,7 @@ const RSVPSectionFull = () => {
                     value={companion.name}
                     onChange={e => updateCompanion(idx, "name", e.target.value)}
                     className="form-control"
-                    style={{ width: '60%', maxWidth: 260, marginBottom: 18, display: 'block', marginLeft: 0 }}
+                    style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
                   />
 
                   <label style={{display: 'block', marginBottom: 8, fontWeight: 500}}>¿Tiene alguna restricción alimenticia?</label>
@@ -231,7 +244,7 @@ const RSVPSectionFull = () => {
                     value={companion.foodRestriction}
                     onChange={e => updateCompanion(idx, "foodRestriction", e.target.value)}
                     className="form-control"
-                    style={{ width: '60%', maxWidth: 260, marginBottom: 18, display: 'block', marginLeft: 0 }}
+                    style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
                   >
                     <option value="No">No</option>
                     <option value="Si, vegan@">Si, vegan@</option>
@@ -246,7 +259,7 @@ const RSVPSectionFull = () => {
                       value={companion.otherRestriction}
                       onChange={e => updateCompanion(idx, "otherRestriction", e.target.value)}
                       className="form-control"
-                      style={{ marginBottom: 18 }}
+                      style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
                     />
                   )}
                 </div>
