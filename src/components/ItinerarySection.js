@@ -6,6 +6,8 @@ import iconFin from '../assets/timeline-icon-last-call.png';
 import iconCena from '../assets/timeline-icon-cena.png';
 import iconBrindis from '../assets/timeline-icon-brindis.png';
 import styles from './ItinerarySection.module.css';
+import decoLove from '../assets/lovestory-1.png';
+
 
 const timeline = [
   { time: '19:30hs', title: 'Ceremonia', icon: iconCeremonia },
@@ -40,6 +42,20 @@ const ItinerarySection = () => (
         </div>
       </div>
     </div>
+    {/* Decorative bottom-right image */}
+    <img
+      src={decoLove}
+      alt="Decoración inferior"
+      style={{
+        position: 'absolute',
+  right: 'clamp(-120px, -12vw, -40px)',
+  bottom: 0,
+        width: 'clamp(320px, 48vw, 900px)',
+        height: 'auto',
+        pointerEvents: 'none',
+        zIndex: 0
+      }}
+    />
   </section>
 );
 

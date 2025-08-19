@@ -3,12 +3,14 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  min-height: 100vh; /* fill full viewport height */
+  min-height: 100svh; /* modern mobile viewport units */
   /* Decorative background */
   background: url('../assets/lovestory-2.png') no-repeat left top;
   background-size: clamp(560px, 70vw, 1200px) auto;
   /* Nudge a bit to the right */
   background-position: clamp(-150px, -8vw, -48px) top;
-  padding: 64px 0 64px 0;
+  padding: clamp(14px, 3vw, 28px) 0 0 0; /* taller top, no bottom padding so bottom image is flush */
 }
 /* Decorative image now handled in component via <img> */
 .container {
@@ -20,7 +22,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem; /* a bit more space under header */
 }
 .headerIcon {
   margin-bottom: 0.5rem;
@@ -36,7 +38,7 @@
   max-width: 700px;
   margin: 0 auto;
   position: relative;
-  padding: 32px 0;
+  padding: 24px 0; /* a bit more breathing room */
 }
 .timeline::before {
   content: '';
@@ -44,10 +46,9 @@
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  width: 4px;
-  height: 100%;
-  background: rgba(34,34,34,0.12);
-  opacity: 0.12;
+  width: 2px;
+  height: 93%;
+  background: rgba(0, 0, 0, 0.5); /* darker center line color, same thickness */
   border-radius: 2px;
   z-index: 0;
 }
@@ -59,7 +60,7 @@
   align-items: center;
   grid-auto-rows: auto;
   width: 100%;
-  margin-bottom: 32px;
+  margin-bottom: clamp(24px, 4vw, 48px); /* slightly more spacing between items */
   position: relative;
   z-index: 1;
 }
@@ -217,14 +218,14 @@
 }
 
 @media (max-width: 480px) {
-  .sectionWrapper { padding: 36px 0; }
+  .sectionWrapper { padding: 14px 0 0 0; }
   /* Decoration sizing handled inline in component */
   /* Keep content flush on mobile to preserve alignment */
   .timelineContent { padding: 0; }
 }
 @media (max-width: 480px) {
   .sectionWrapper {
-    padding: 36px 0;
+    padding: 14px 0 0 0; /* top space only; bottom flush so image reaches the edge */
   /* Nudge a bit to the right on small screens */
   background-position: clamp(-84px, -12vw, -30px) top;
     background-size: clamp(420px, 85vw, 900px) auto;
