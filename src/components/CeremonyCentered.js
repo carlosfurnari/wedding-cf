@@ -9,7 +9,7 @@ const CeremonyCentered = () => {
   const [showParkingModal, setShowParkingModal] = useState(false);
 
   return (
-  <section className="ceremonyfiesta-bg">
+  <section className="ceremonyfiesta-bg" id="ceremonia">
   <div className="ceremonyfiesta-section">
         <img src={iconAnillos} alt="Icono anillos" style={{width: '120px', opacity: 0.5, marginBottom: 0, marginTop: 0, display: 'block', marginLeft: 'auto', marginRight: 'auto'}} />
         <h2 

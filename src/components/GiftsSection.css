@@ -18,10 +18,15 @@
   background: var(--surface-alt);
   border-radius: 24px;
   max-width: 650px;
-  margin: 0 auto 2rem; /* no top margin */
-  padding: 0 2.5rem 3rem; /* remove top padding, keep sides and bottom */
+  margin: 0 auto; /* fully centered within flex container */
+  padding: 2rem 2.5rem; /* symmetric padding so content sits centered */
   box-sizing: border-box;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* vertical centering of inner content */
+  min-height: clamp(300px, 52vh, 520px); /* ensure there's room to center */
 }
 .lovestory {
   font-family: 'Dantina', sans-serif;

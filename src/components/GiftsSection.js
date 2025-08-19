@@ -15,9 +15,10 @@ const GiftsSection = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        width: '100%',
       }}
     >
-      <div className="gifts-content rounded p-4 text-center">
+  <div className="gifts-content rounded text-center">
         <img
           className="img-fluid mb-0 mt-0"
           src={iconGift}
@@ -29,7 +30,7 @@ const GiftsSection = () => {
         <p className="text-center text-gris mb-4" style={{marginBottom: '2.2rem'}}>
           Nuestro mejor regalo es que puedas acompañarnos, pero si lo deseás, podés colaborar con nuestra luna de miel.
         </p>
-        <div className="gifts-buttons" style={{display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '0.5rem'}}>
+  <div className="gifts-buttons" style={{display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '0.5rem'}}>
           <button
             className="btn btn--primary btn--md"
             onClick={() => setShowModal(true)}

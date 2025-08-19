@@ -26,7 +26,7 @@ const Counter = () => {
 
   return (
     <section className="counter-section">
-      <div className="counter-overlay">
+  <div className="counter-overlay">
         <img src={iconAnillos} alt="Anillos" className="counter-icon" />
         <div className="counter-date">29 • 11 • 2025</div>
         <div className="counter-title">Flor <span className="counter-heart">&#9825;</span> Carlos</div>
@@ -51,6 +51,20 @@ const Counter = () => {
           </div>
         </div>
       </div>
+      {/* Mouse-style scroll indicator pinned to section bottom */}
+      <a
+        href="#ceremonia"
+        className="mouse smoothscroll"
+        aria-label="Ir a la sección de ceremonia"
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById('ceremonia')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }}
+      >
+        <span className="mouse-icon">
+          <span className="mouse-wheel" />
+        </span>
+      </a>
     </section>
   );
 };
