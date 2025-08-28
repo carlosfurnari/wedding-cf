@@ -4,10 +4,8 @@
   margin: 0 0 2rem 0; /* remove top margin, keep bottom spacing */
   border-radius: 0;
   max-width: none;
-  width: 100vw;
+  width: 100%;
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   box-shadow: none;
   display: flex;
   align-items: center;

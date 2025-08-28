@@ -3,7 +3,7 @@
   margin: 0;
   border-radius: 0;
   max-width: none;
-  width: 100vw;
+  width: 100%;
   box-shadow: none;
   position: relative;
 }
@@ -83,12 +83,12 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .site-section { margin: 0; width: 100vw; border-radius: 0; }
+  .site-section { margin: 0; width: 100%; border-radius: 0; }
   .p-4 { padding: 1.2rem 1rem; }
 }
 
 @media (max-width: 480px) {
-  .site-section { margin: 0; width: 100vw; border-radius: 0; }
+  .site-section { margin: 0; width: 100%; border-radius: 0; }
   .p-4 { padding: 1rem 0.75rem; }
   .btn { width: 100%; }
 }

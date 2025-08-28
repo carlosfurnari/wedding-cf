@@ -1,8 +1,6 @@
 .sectionWrapper {
-  width: 100vw;
+  width: 100%;
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   min-height: 100vh; /* fill full viewport height */
   min-height: 100svh; /* modern mobile viewport units */
   /* Decorative background */

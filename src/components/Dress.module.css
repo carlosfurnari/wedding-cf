@@ -1,8 +1,6 @@
 .sectionWrapper {
-  width: 100vw;
+  width: 100%;
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   /* Apply section background full-width */
   background: url('../assets/bg25.jpg') no-repeat 50% 0 / cover;
   padding: 0 0 64px 0;

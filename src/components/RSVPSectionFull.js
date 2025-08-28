@@ -88,13 +88,13 @@ const RSVPSectionFull = () => {
       }}
       id="rsvp"
     >
-        {/* Imagen superior que preserva su relación de aspecto */}
+    {/* Imagen superior que preserva su relación de aspecto */}
         <img
           src="/assets/passion-2.png"
           alt="Decoración superior"
           style={{
             display: 'block',
-            width: 'min(100vw, 480px)',
+      width: 'min(100%, 480px)',
             height: 'auto',
             margin: 0,
             marginBottom: 'clamp(20px, 6vw, 56px)',
@@ -287,7 +287,7 @@ const RSVPSectionFull = () => {
           bottom: '-1px', // asegurar que llegue al borde inferior de la sección
           transform: 'translateX(-50%) rotate(180deg)',
           zIndex: 1,
-          width: 'min(90vw, 420px)',
+          width: 'min(90%, 420px)',
           height: 'auto',
           margin: 0,
           pointerEvents: 'none',
