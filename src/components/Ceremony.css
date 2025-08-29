@@ -119,11 +119,10 @@
 .ceremonyfiesta-bg {
   width: 100%;
   /* Full viewport like the hero */
-  height: 100vh;
-  height: 100svh; /* modern mobile viewport units */
-  height: 100dvh; /* dynamic mobile viewport */
-  min-height: 100vh;
-  min-height: 100svh; /* fallback */
+  height: 100vh;          /* fallback */
+  height: 100dvh;         /* dynamic viewport */
+  height: 100svh;         /* prefer stable small viewport on mobile */
+  min-height: 100svh;     /* ensure it never exceeds visible area when bars show */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,27 +184,26 @@
 @media (max-width: 480px) {
   .ceremonyfiesta-bg {
   height: 100vh;
-  height: 100svh;
   height: 100dvh;
-  min-height: 100vh;
+  height: 100svh; /* final: svh */
   min-height: 100svh;
   padding: 0;
   }
+  .ceremonyfiesta-section { padding: 1.4rem 1rem; transform: translateY(0); }
   .ceremonyfiesta-bg::before { height: 88px; }
   .ceremonyfiesta-bg::after { height: 88px; }
 }
 
 /* Ensure the inner card is above the wave */
 .ceremonyfiesta-section {
-  position: relative;
-  z-index: 1;
-}
-
-/* Responsive */
+  height: 100vh;
+  height: 100dvh;
+  height: 100svh; /* final: svh */
+  min-height: 100svh;
 @media (max-width: 768px) {
   .ceremonyfiesta-img,
-  .ceremonyfiesta-img-round {
-    width: 160px;
+  .ceremonyfiesta-bg::before { height: 84px; }
+  .ceremonyfiesta-bg::after { height: 84px; }
     height: 160px;
   }
 }
