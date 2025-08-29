@@ -27,7 +27,7 @@ const CeremonyCentered = () => {
           src={tomateImg} 
           alt="Ceremonia" 
           className="img-fluid rounded-circle mb-3" 
-          style={{ width: '200px', height: '200px', objectFit: 'cover', borderRadius: '50%', display: 'block', marginLeft: 'auto', marginRight: 'auto' }} 
+          style={{ width: 'clamp(140px, 36vw, 200px)', height: 'clamp(140px, 36vw, 200px)', objectFit: 'cover', borderRadius: '50%', display: 'block', marginLeft: 'auto', marginRight: 'auto' }} 
         />
         <p className="text-black-50 mb-2 font-weight-bolder section-sub-title" style={{marginTop: '1.2rem', marginBottom: '0.2rem', textAlign: 'center', width: '100%'}}>DIA Y HORARIO</p>
         <p className="text-center text-gris" style={{textAlign: 'center', width: '100%'}}>29 de Noviembre de 2025 a las 19:00hs</p>
