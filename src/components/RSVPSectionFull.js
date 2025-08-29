@@ -82,14 +82,15 @@ const RSVPSectionFull = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-start',
-  padding: '0 1rem clamp(72px, 14vw, 160px) 1rem', // aún más espacio antes de la decoración inferior
+  justifyContent: 'flex-start',
+  /* top padding prevents overlap with previous section's wave; bottom keeps space for our own bottom flourish */
+  padding: 'clamp(20px, 5vw, 32px) 1rem clamp(80px, 16vw, 168px) 1rem',
         boxSizing: 'border-box'
       }}
       id="rsvp"
     >
     {/* Imagen superior que preserva su relación de aspecto */}
-        <img
+    <img
           src="/assets/passion-2.png"
           alt="Decoración superior"
           style={{
@@ -99,7 +100,9 @@ const RSVPSectionFull = () => {
             margin: 0,
             marginBottom: 'clamp(20px, 6vw, 56px)',
             pointerEvents: 'none',
-            userSelect: 'none'
+      userSelect: 'none',
+      position: 'relative',
+      zIndex: 1
           }}
         />
         <img
@@ -277,7 +280,7 @@ const RSVPSectionFull = () => {
         </div>
       )}
       {/* Decorative bottom flourish rotated */}
-      <img
+    <img
         src="/assets/passion-1.png"
         alt="Decoración inferior"
         style={{
@@ -286,8 +289,8 @@ const RSVPSectionFull = () => {
           left: '50%',
           bottom: '-1px', // asegurar que llegue al borde inferior de la sección
           transform: 'translateX(-50%) rotate(180deg)',
-          zIndex: 1,
-          width: 'min(90%, 420px)',
+      zIndex: 0,
+          width: 'min(88%, 400px)',
           height: 'auto',
           margin: 0,
           pointerEvents: 'none',
