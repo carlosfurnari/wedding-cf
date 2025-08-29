@@ -30,6 +30,34 @@ function App() {
         return () => clearInterval(timer);
     }, []);
 
+    // Reload once on first downward scroll from the top on mobile
+    useEffect(() => {
+        const isMobile = (typeof window !== 'undefined') && (window.matchMedia('(max-width: 700px)').matches || /Mobi|Android/i.test(navigator.userAgent));
+        if (!isMobile) return;
+
+        // Avoid infinite reload loops: only once per session
+        if (sessionStorage.getItem('reloadOnFirstScrollDone') === '1') return;
+
+        let ticking = false;
+        const threshold = 120; // px scrolled from top
+
+        const onScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const y = window.scrollY || document.documentElement.scrollTop || 0;
+                if (y > threshold) {
+                    try { sessionStorage.setItem('reloadOnFirstScrollDone', '1'); } catch (_) {}
+                    window.location.reload();
+                }
+                ticking = false;
+            });
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
     return (
         <div className="App">
             <Counter />
