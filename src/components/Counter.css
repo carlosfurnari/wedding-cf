@@ -1,7 +1,12 @@
 .counter-section {
   width: 100%;
+  /* Full viewport height across browsers (fallback -> svh -> dvh) */
   height: 100vh;
+  height: 100svh;
+  height: 100dvh;
   min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
   /* Fondo a pantalla completa con la imagen fondoFull */
   background: var(--bg) url('../assets/fondoFull2.png') no-repeat 50% 50% / cover;
   display: flex;
