@@ -82,7 +82,8 @@ const CeremonyCentered = () => {
               position: 'relative',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center'
+              alignItems: 'center',
+              overflow: 'hidden' /* ensure large script titles don't overflow the rounded box */
             }}
             onClick={e => e.stopPropagation()}
           >
@@ -102,7 +103,23 @@ const CeremonyCentered = () => {
             >
               &times;
             </button>
-            <h3 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1.2rem'}}>Estacionamiento</h3>
+      <h3
+              className="lovestory text-gris"
+              style={{
+                textAlign: 'center',
+                width: '100%',
+                margin: '0 0 1.2rem 0', // remove default top margin so it doesn't escape the modal
+                padding: '0 8px',
+                boxSizing: 'border-box',
+        fontSize: 'clamp(1.15rem, 4.4vw, 1.55rem)',
+        lineHeight: 1.05,
+        whiteSpace: 'nowrap',
+                overflowWrap: 'anywhere',
+                wordBreak: 'break-word'
+              }}
+            >
+              Estacionamiento
+            </h3>
             <img
               src={mapa1}
               alt="Mapa estacionamiento"
