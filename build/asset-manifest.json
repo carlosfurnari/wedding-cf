@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.a9039847.css",
+    "main.css": "/static/css/main.18886ca0.css",
     "main.js": "/static/js/main.101110ad.js",
     "static/media/fondoFull2.png": "/static/media/fondoFull2.97316b2a0ec03487d3d4.png",
     "static/media/mapa1.png": "/static/media/mapa1.14b0afd459122143b132.png",
@@ -11,11 +11,11 @@
     "static/media/lovestory-2.png": "/static/media/lovestory-2.a76825a5d461703e9380.png",
     "static/media/lovestory-1.png": "/static/media/lovestory-1.b4050b1934e5a16d669e.png",
     "index.html": "/index.html",
-    "main.a9039847.css.map": "/static/css/main.a9039847.css.map",
+    "main.18886ca0.css.map": "/static/css/main.18886ca0.css.map",
     "main.101110ad.js.map": "/static/js/main.101110ad.js.map"
   },
   "entrypoints": [
-    "static/css/main.a9039847.css",
+    "static/css/main.18886ca0.css",
     "static/js/main.101110ad.js"
   ]
 }

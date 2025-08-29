@@ -14,6 +14,7 @@
   box-sizing: border-box;
   position: relative;
   overflow-x: visible;
+  z-index: 1; /* keep content above decorative waves */
 }
 
 .ceremonyfiesta-content-centered {
@@ -52,9 +53,6 @@
   font-family: 'Dantina', sans-serif;
   font-size: 2.2rem;
   color: var(--text);
-  text-align: center;
-  margin: 0.5rem 0 1.2rem 0;
-  font-weight: 400;
   letter-spacing: 0.04em;
 }
 /* Eliminado duplicado ceremonyfiesta-img */
@@ -86,6 +84,7 @@
   gap: 0.75rem;
   margin-top: 1.2rem;
   flex-wrap: nowrap; /* keep in a single line on desktop/tablet */
+  margin-bottom: 2rem; /* breathing room above bottom wave */
 }
 .ceremonyfiesta-btn {
   background: #fff;
@@ -139,7 +138,10 @@
   .ceremonyfiesta-bg {
     scroll-snap-align: unset;
     scroll-snap-stop: normal;
+    padding-top: clamp(96px, 12vh, 160px);
+    padding-bottom: clamp(96px, 12vh, 160px);
   }
+  .ceremonyfiesta-section { transform: none; }
 }
 
 .ceremonyfiesta-bg::before {
@@ -151,6 +153,7 @@
   height: 160px; /* top wave height */
   background: url('../assets/wave-mid-brush.png') no-repeat 50% 0;
   background-size: 100% 100%; /* fill width and height */
+  background-color: var(--bg); /* mask any transparency in the brush */
   transform: rotate(180deg); /* rotate 180° vertically */
   pointer-events: none;
   z-index: 0;
@@ -165,6 +168,7 @@
   height: 160px; /* taller wave */
   background: url('../assets/wave-mid-brush.png') no-repeat 50% 100%;
   background-size: 100% 100%; /* fill width and height */
+  background-color: var(--bg); /* mask any transparency in the brush */
   pointer-events: none;
   z-index: 0;
 }
@@ -179,7 +183,12 @@
   }
   .ceremonyfiesta-bg::before { height: 120px; }
   .ceremonyfiesta-bg::after { height: 120px; }
-  .ceremonyfiesta-section { padding: 1.4rem 1rem; transform: translateY(0); }
+  .ceremonyfiesta-section {
+    padding: 1.4rem 1rem;
+    transform: translateY(0);
+    padding-top: clamp(80px, 16vw, 120px);   /* keep content clear of top wave */
+    padding-bottom: clamp(80px, 16vw, 120px);/* keep content clear of bottom wave */
+  }
   .ceremonyfiesta-img,
   .ceremonyfiesta-img-round { width: 160px; height: 160px; }
 }
@@ -192,7 +201,12 @@
     min-height: 100svh;
     padding: 0;
   }
-  .ceremonyfiesta-section { padding: 1.25rem 1rem; transform: translateY(0); }
+  .ceremonyfiesta-section {
+    padding: 1.25rem 1rem;
+    transform: translateY(0);
+    padding-top: clamp(64px, 18vw, 96px);
+    padding-bottom: clamp(64px, 18vw, 96px);
+  }
   .ceremonyfiesta-bg::before { height: 80px; }
   .ceremonyfiesta-bg::after { height: 80px; }
   .ceremonyfiesta-img,
