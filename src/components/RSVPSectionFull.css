@@ -6,6 +6,15 @@
   width: 100%;
   box-shadow: none;
   position: relative;
+  /* Make RSVP a snap point so scroll doesn't bounce back to previous section */
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
+}
+
+@media (min-width: 769px) {
+  .site-section {
+    scroll-snap-align: start;
+  }
 }
 .container {
   width: 100%;

@@ -37,10 +37,10 @@ body {
     overscroll-behavior-y: contain;
 }
 
-    /* On desktop/tablet enforce mandatory snap for a crisp section-to-section transition */
+    /* On desktop/tablet disable scroll snap to avoid bounce-backs */
     @media (min-width: 769px) {
         body {
-            scroll-snap-type: y mandatory;
+            scroll-snap-type: none;
         }
     }
 

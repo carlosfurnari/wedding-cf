@@ -128,8 +128,15 @@
   background-color: transparent;
   background-attachment: scroll; /* safer on mobile */
   position: relative;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
+  scroll-snap-align: center; /* Keep this line for mobile */
+  scroll-snap-stop: normal; /* Keep this line for mobile */
+}
+
+@media (min-width: 769px) {
+  .ceremonyfiesta-bg {
+    scroll-snap-align: unset;
+    scroll-snap-stop: normal;
+  }
 }
 
 .ceremonyfiesta-bg::before {

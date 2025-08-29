@@ -14,7 +14,14 @@
   justify-content: center;
   position: relative;
   scroll-snap-align: center;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
+}
+
+@media (min-width: 769px) {
+  .counter-section {
+    scroll-snap-align: unset;
+    scroll-snap-stop: normal;
+  }
 }
 .counter-section::before {
   /* Velo sutil para mejorar legibilidad sobre la foto */
