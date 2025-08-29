@@ -130,7 +130,7 @@
   background-color: transparent;
   background-attachment: scroll; /* safer on mobile */
   position: relative;
-  scroll-snap-align: center; /* Keep this line for mobile */
+  scroll-snap-align: start; /* align to top to avoid overlap */
   scroll-snap-stop: normal; /* Keep this line for mobile */
 }
 

@@ -7,7 +7,7 @@
   box-shadow: none;
   position: relative;
   /* Make RSVP a snap point so scroll doesn't bounce back to previous section */
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   scroll-snap-stop: normal;
 }
 
