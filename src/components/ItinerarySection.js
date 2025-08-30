@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import iconTimeline from '../assets/icon-timeline.png';
 import iconCeremonia from '../assets/timeline-icon-ceremonia.png';
 import iconRecepcion from '../assets/timeline-icon-recepcion.png';
@@ -18,105 +18,8 @@ const timeline = [
 ];
 
 const ItinerarySection = () => {
-  const sectionRef = useRef(null);
-  const hasSnappedRef = useRef(false);
-  const prevRatioRef = useRef(0);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    // Respect reduced motion preferences
-    const prefersReduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const smoothCenter = () => {
-      const doc = document.scrollingElement || document.documentElement;
-      const html = document.documentElement;
-      const body = document.body;
-      const prevHtmlSnap = html.style.scrollSnapType;
-      const prevBodySnap = body.style.scrollSnapType;
-      // Temporarily disable snap to avoid the browser stopping early
-      html.style.scrollSnapType = 'none';
-      body.style.scrollSnapType = 'none';
-
-      const rect = el.getBoundingClientRect();
-      const currentY = window.pageYOffset || window.scrollY || 0;
-      const targetY = currentY + rect.top + rect.height / 2 - window.innerHeight / 2;
-      const maxY = (doc?.scrollHeight || 0) - window.innerHeight;
-      const finalY = Math.max(0, Math.min(targetY, maxY));
-
-      const behavior = prefersReduce ? 'auto' : 'smooth';
-      // If centering would require a negative offset (near top), fall back to aligning start
-      if (targetY < 0) {
-        el.scrollIntoView({ behavior, block: 'start' });
-      } else {
-        window.scrollTo({ top: finalY, behavior });
-      }
-
-      // Restore snap a bit after the smooth scroll should have finished
-      const restoreDelay = prefersReduce ? 0 : 650;
-      window.setTimeout(() => {
-        html.style.scrollSnapType = prevHtmlSnap;
-        body.style.scrollSnapType = prevBodySnap;
-      }, restoreDelay);
-    };
-
-    const alignStart = () => {
-      const html = document.documentElement;
-      const body = document.body;
-      const prevHtmlSnap = html.style.scrollSnapType;
-      const prevBodySnap = body.style.scrollSnapType;
-      html.style.scrollSnapType = 'none';
-      body.style.scrollSnapType = 'none';
-      const behavior = prefersReduce ? 'auto' : 'smooth';
-      el.scrollIntoView({ behavior, block: 'start' });
-      const restoreDelay = prefersReduce ? 0 : 500;
-      window.setTimeout(() => {
-        html.style.scrollSnapType = prevHtmlSnap;
-        body.style.scrollSnapType = prevBodySnap;
-      }, restoreDelay);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const ratio = entry.intersectionRatio;
-
-          // Re-arm when ratio is negligible (effectively out of view),
-          // this works whether you scroll down or up, even if sections overlap.
-          if (ratio < 0.04) {
-            hasSnappedRef.current = false;
-          }
-
-          // On first meaningful entry, center the section.
-          if (!hasSnappedRef.current && ratio > 0.12) {
-            hasSnappedRef.current = true;
-            setTimeout(() => {
-              smoothCenter();
-            }, 60);
-          }
-
-          // Near top edge: if user is at/near top and section begins to show, align start.
-          const scrollY = window.pageYOffset || window.scrollY || 0;
-          if (!hasSnappedRef.current && scrollY < 40 && ratio > 0.02) {
-            hasSnappedRef.current = true;
-            setTimeout(() => {
-              alignStart();
-            }, 40);
-          }
-
-          prevRatioRef.current = ratio;
-        }
-      },
-      { root: null, threshold: [0, 0.04, 0.1, 0.12, 0.5] }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-  <section ref={sectionRef} className={styles.sectionWrapper} id="itinerario">
+  <section className={styles.sectionWrapper} id="itinerario">
   <div className={styles.container}>
       <div className={styles.headerRow}>
         <img className={styles.headerIcon} src={iconTimeline} width="110" alt="Itinerario" style={{opacity: 0.5}} />

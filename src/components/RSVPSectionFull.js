@@ -6,6 +6,7 @@ import { getOrCreateDeviceId, getRsvpSubmitted, markRsvpSubmitted, getRsvpDraft,
 
 const RSVPSectionFull = () => {
   const [showModal, setShowModal] = useState(false);
+  const [scrollYBeforeModal, setScrollYBeforeModal] = useState(0);
   const [guestName, setGuestName] = useState("");
   const [foodRestriction, setFoodRestriction] = useState("No");
   const [otherRestriction, setOtherRestriction] = useState("");
@@ -29,19 +30,44 @@ const RSVPSectionFull = () => {
     saveRsvpDraft({ guestName, foodRestriction, otherRestriction, companions });
   }, [guestName, foodRestriction, otherRestriction, companions]);
 
-  // Lock background scroll when modal is open (prevents page from moving under fixed overlay)
+  // Lock scroll using fixed body to preserve scroll position and avoid jumps
   useEffect(() => {
+    const body = document.body;
     if (showModal) {
-      const prevBodyOverflow = document.body.style.overflow;
-      const prevHtmlOverflow = document.documentElement.style.overflow;
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = prevBodyOverflow;
-        document.documentElement.style.overflow = prevHtmlOverflow;
-      };
+      const y = window.scrollY || window.pageYOffset || 0;
+      setScrollYBeforeModal(y);
+      body.style.position = 'fixed';
+      body.style.top = `-${y}px`;
+      body.style.left = '0';
+      body.style.right = '0';
+      body.style.width = '100%';
+    } else {
+      // restore if we had locked
+      if (body.style.position === 'fixed') {
+        const top = body.style.top;
+        body.style.position = '';
+        body.style.top = '';
+        body.style.left = '';
+        body.style.right = '';
+        body.style.width = '';
+        const restoreY = top ? -parseInt(top, 10) : (scrollYBeforeModal || 0);
+        window.scrollTo({ top: restoreY, left: 0, behavior: 'auto' });
+      }
     }
-  }, [showModal]);
+    return () => {
+      // cleanup on unmount
+      if (body.style.position === 'fixed') {
+        const top = body.style.top;
+        body.style.position = '';
+        body.style.top = '';
+        body.style.left = '';
+        body.style.right = '';
+        body.style.width = '';
+        const restoreY = top ? -parseInt(top, 10) : (scrollYBeforeModal || 0);
+        window.scrollTo({ top: restoreY, left: 0, behavior: 'auto' });
+      }
+    };
+  }, [showModal, scrollYBeforeModal]);
 
   const addCompanion = () => {
     setCompanions([...companions, { name: "", foodRestriction: "No", otherRestriction: "" }]);
@@ -134,7 +160,7 @@ const RSVPSectionFull = () => {
         <div style={{textAlign: 'center', width: '100%', marginBottom: '0.5rem'}}>
           <button className="btn btn--primary btn--md"
             style={{margin: '0 auto', display: 'inline-block', marginBottom: 0}}
-            onClick={() => setShowModal(true)} disabled={!!submitted}>
+            onClick={() => { setScrollYBeforeModal(window.scrollY || window.pageYOffset || 0); setShowModal(true); }} disabled={!!submitted}>
             CONFIRMAR ASISTENCIA
           </button>
           {submitted && (
@@ -163,7 +189,7 @@ const RSVPSectionFull = () => {
             scrollbarGutter: 'stable both-edges',
             boxSizing: 'border-box'
           }}
-          onClick={() => setShowModal(false)}
+          onClick={() => { setShowModal(false); }}
         >
           <div
             style={{
@@ -190,7 +216,7 @@ const RSVPSectionFull = () => {
             <button style={{
               position: 'absolute', top: 16, right: 18, background: 'none', border: 'none',
               fontSize: '2.2rem', color: 'var(--primary)', cursor: 'pointer', lineHeight: 1
-            }} onClick={() => setShowModal(false)}>&times;</button>
+             }} onClick={() => { setShowModal(false); }}>&times;</button>
             <h3 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1.2rem'}}>Confirmar asistencia</h3>
             <form style={{width: '100%'}} onSubmit={handleSubmit}>
               <label className="form-label" style={{textAlign: 'left'}}>Nombre y apellido</label>

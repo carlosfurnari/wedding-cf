@@ -1,9 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import iconGift from '../assets/icon-gift2-b.png';
 import './GiftsSection.css';
 
 const GiftsSection = () => {
   const [showModal, setShowModal] = useState(false);
+  const [scrollYBeforeModal, setScrollYBeforeModal] = useState(0);
+
+  // Lock scroll using fixed body to preserve scroll position and avoid jumps
+  useEffect(() => {
+    const body = document.body;
+    if (showModal) {
+      const y = window.scrollY || window.pageYOffset || 0;
+      setScrollYBeforeModal(y);
+      body.style.position = 'fixed';
+      body.style.top = `-${y}px`;
+      body.style.left = '0';
+      body.style.right = '0';
+      body.style.width = '100%';
+    } else {
+      if (body.style.position === 'fixed') {
+        const top = body.style.top;
+        body.style.position = '';
+        body.style.top = '';
+        body.style.left = '';
+        body.style.right = '';
+        body.style.width = '';
+        const restoreY = top ? -parseInt(top, 10) : (scrollYBeforeModal || 0);
+        window.scrollTo({ top: restoreY, left: 0, behavior: 'auto' });
+      }
+    }
+    return () => {
+      if (body.style.position === 'fixed') {
+        const top = body.style.top;
+        body.style.position = '';
+        body.style.top = '';
+        body.style.left = '';
+        body.style.right = '';
+        body.style.width = '';
+        const restoreY = top ? -parseInt(top, 10) : (scrollYBeforeModal || 0);
+        window.scrollTo({ top: restoreY, left: 0, behavior: 'auto' });
+      }
+    };
+  }, [showModal, scrollYBeforeModal]);
 
   return (
     <section
@@ -33,13 +72,13 @@ const GiftsSection = () => {
   <div className="gifts-buttons" style={{display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '0.5rem'}}>
           <button
             className="btn btn--primary btn--md"
-            onClick={() => setShowModal(true)}
+            onClick={() => { setScrollYBeforeModal(window.scrollY || window.pageYOffset || 0); setShowModal(true); }}
           >
             CUENTA BANCARIA
           </button>
         </div>
       </div>
-      {showModal && (
+  {showModal && createPortal((
         <div
           style={{
             position: 'fixed',
@@ -48,29 +87,33 @@ const GiftsSection = () => {
             right: 0,
             bottom: 0,
             background: 'rgba(0,0,0,0.45)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000
+            display: 'grid',
+            placeItems: 'center',
+            zIndex: 1000,
+            padding: '16px',
+            boxSizing: 'border-box',
+            overflowY: 'auto',
+            overflowX: 'hidden'
           }}
-          onClick={() => setShowModal(false)}
+          onClick={() => { setShowModal(false); }}
         >
           <div
             style={{
               background: '#fff',
               borderRadius: 24,
               padding: '32px 24px 24px 24px',
-              maxWidth: 400,
-              width: '95vw',
+              maxWidth: 'min(420px, 100%)',
+              width: '100%',
               boxShadow: '0 4px 32px rgba(0,0,0,0.12)',
               position: 'relative',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center'
+              alignItems: 'center',
+              overflow: 'hidden'
             }}
             onClick={e => e.stopPropagation()}
           >
-      <button
+  <button
               style={{
                 position: 'absolute',
                 top: 16,
@@ -82,17 +125,17 @@ const GiftsSection = () => {
                 cursor: 'pointer',
                 lineHeight: 1
               }}
-              onClick={() => setShowModal(false)}
+              onClick={() => { setShowModal(false); }}
             >
               &times;
             </button>
             <h3 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1.2rem'}}>Datos bancarios</h3>
-            <p style={{marginBottom: 12}}><strong>Titular:</strong> Florencia Costa</p>
-            <p style={{marginBottom: 12}}><strong>Número de cuenta:</strong> 123456789012345</p>
-            <p style={{marginBottom: 12}}><strong>Alias:</strong> FLOR.COSTA.CASAMIENTO</p>
+            <p style={{marginBottom: 12}}><strong>Titular:</strong> Carlos Furnari</p>
+            <p style={{marginBottom: 12}}><strong>Número de cuenta:</strong> 0720175888000037128986</p>
+            <p style={{marginBottom: 12}}><strong>Alias:</strong> cfurnari</p>
           </div>
         </div>
-      )}
+      ), document.body)}
     </section>
   );
 };

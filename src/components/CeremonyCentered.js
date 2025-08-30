@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import iconAnillos from '../assets/icon-anillos-v2-b.png';
 import tomateImg from '../assets/tomate.jpeg';
 import mapa1 from '../assets/mapa1.png';
@@ -7,6 +8,100 @@ import './Ceremony.css';
 
 const CeremonyCentered = () => {
   const [showParkingModal, setShowParkingModal] = useState(false);
+  const [scrollYBeforeModal, setScrollYBeforeModal] = useState(0);
+
+  // Create and download an ICS file to add the event to the default calendar
+  const handleAddToCalendar = () => {
+    // Event details
+    const title = 'Ceremonia y Fiesta – Flor & Carlos';
+    const description = 'Ceremonia y fiesta de Florencia y Carlos';
+    const location = 'TOMATE, Av. Infanta Isabel 555, CABA';
+    // Use UTC times for wide compatibility (Buenos Aires is UTC-3)
+    const startUtc = new Date(Date.UTC(2025, 10, 29, 22, 0, 0)); // 2025-11-29 19:00 ART => 22:00Z
+    const endUtc = new Date(Date.UTC(2025, 10, 30, 4, 45, 0));   // 2025-11-30 01:45 ART => 04:45Z
+
+    const fmt = (d) => {
+      const pad = (n) => String(n).padStart(2, '0');
+      return (
+        d.getUTCFullYear().toString() +
+        pad(d.getUTCMonth() + 1) +
+        pad(d.getUTCDate()) + 'T' +
+        pad(d.getUTCHours()) +
+        pad(d.getUTCMinutes()) +
+        pad(d.getUTCSeconds()) + 'Z'
+      );
+    };
+
+    const uid = `wedding-cf-${Date.now()}@local`; // simple unique id
+    const dtstamp = fmt(new Date());
+
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//wedding-cf//ES',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      `UID:${uid}`,
+      `DTSTAMP:${dtstamp}`,
+      `DTSTART:${fmt(startUtc)}`,
+      `DTEND:${fmt(endUtc)}`,
+      `SUMMARY:${title}`,
+      `DESCRIPTION:${description}`,
+      `LOCATION:${location}`,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Flor-Carlos-2025-11-29.ics';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+      a.remove();
+    }, 0);
+  };
+
+  // Lock scroll using fixed body to preserve scroll position and avoid jumps
+  useEffect(() => {
+    const body = document.body;
+    if (showParkingModal) {
+      const y = window.scrollY || window.pageYOffset || 0;
+      setScrollYBeforeModal(y);
+      body.style.position = 'fixed';
+      body.style.top = `-${y}px`;
+      body.style.left = '0';
+      body.style.right = '0';
+      body.style.width = '100%';
+    } else {
+      if (body.style.position === 'fixed') {
+        const top = body.style.top;
+        body.style.position = '';
+        body.style.top = '';
+        body.style.left = '';
+        body.style.right = '';
+        body.style.width = '';
+        const restoreY = top ? -parseInt(top, 10) : (scrollYBeforeModal || 0);
+        window.scrollTo({ top: restoreY, left: 0, behavior: 'auto' });
+      }
+    }
+    return () => {
+      if (body.style.position === 'fixed') {
+        const top = body.style.top;
+        body.style.position = '';
+        body.style.top = '';
+        body.style.left = '';
+        body.style.right = '';
+        body.style.width = '';
+        const restoreY = top ? -parseInt(top, 10) : (scrollYBeforeModal || 0);
+        window.scrollTo({ top: restoreY, left: 0, behavior: 'auto' });
+      }
+    };
+  }, [showParkingModal, scrollYBeforeModal]);
 
   return (
   <section className="ceremonyfiesta-bg" id="ceremonia">
@@ -36,7 +131,7 @@ const CeremonyCentered = () => {
           "TOMATE", Infanta Isabel 555, CABA
         </p>
         <div className="ceremonyfiesta-buttons">
-          <button className="ceremonyfiesta-btn">
+          <button className="ceremonyfiesta-btn" onClick={handleAddToCalendar} aria-label="Agregar al calendario">
             <i className="icon-calendar" aria-hidden="true"></i>  AGENDAR
           </button>
           <a
@@ -49,13 +144,13 @@ const CeremonyCentered = () => {
           </a>
           <button
             className="ceremonyfiesta-btn"
-            onClick={() => setShowParkingModal(true)}
+            onClick={() => { setScrollYBeforeModal(window.scrollY || window.pageYOffset || 0); setShowParkingModal(true); }}
           >
             <i className="icon-car" aria-hidden="true"></i>  ESTACIONAMIENTO
           </button>
         </div>
       </div>
-      {showParkingModal && (
+      {showParkingModal && createPortal((
         <div
           style={{
             position: 'fixed',
@@ -64,20 +159,23 @@ const CeremonyCentered = () => {
             right: 0,
             bottom: 0,
             background: 'rgba(0,0,0,0.45)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000
+            display: 'grid',
+            placeItems: 'center',
+            zIndex: 1000,
+            padding: '16px',
+            boxSizing: 'border-box',
+            overflowY: 'auto',
+            overflowX: 'hidden'
           }}
-          onClick={() => setShowParkingModal(false)}
+          onClick={() => { setShowParkingModal(false); }}
         >
           <div
             style={{
               background: '#fff',
               borderRadius: 24,
               padding: '32px 24px 24px 24px',
-              maxWidth: 400,
-              width: '95vw',
+              maxWidth: 'min(420px, 100%)',
+              width: '100%',
               boxShadow: '0 4px 32px rgba(0,0,0,0.12)',
               position: 'relative',
               display: 'flex',
@@ -99,7 +197,7 @@ const CeremonyCentered = () => {
                 cursor: 'pointer',
                 lineHeight: 1
               }}
-              onClick={() => setShowParkingModal(false)}
+              onClick={() => { setShowParkingModal(false); }}
             >
               &times;
             </button>
@@ -134,7 +232,7 @@ const CeremonyCentered = () => {
             <p style={{marginBottom: 12}}>Hay estacionamiento disponible en el lugar y en las inmediaciones. Consultá al llegar por disponibilidad.</p>
           </div>
         </div>
-      )}
+      ), document.body)}
     </section>
   );
 };

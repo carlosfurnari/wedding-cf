@@ -84,6 +84,7 @@
   gap: 0.75rem;
   margin-top: 1.2rem;
   flex-wrap: nowrap; /* keep in a single line on desktop/tablet */
+  width: 100%; /* allow equal-width children to span the row */
   margin-bottom: 2rem; /* breathing room above bottom wave */
 }
 .ceremonyfiesta-btn {
@@ -105,8 +106,9 @@
   justify-content: center;
   gap: 0.5rem;
   text-align: center;
-  flex: 0 0 auto; /* don't grow, keep compact */
+  flex: 1 1 0; /* grow evenly so all three have the same width */
   max-width: none;
+  min-width: 0; /* allow flex shrink if needed */
 }
 .ceremonyfiesta-btn:hover {
   background: var(--primary);
