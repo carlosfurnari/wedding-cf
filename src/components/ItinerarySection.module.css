@@ -66,7 +66,7 @@
 .timelineItem {
   /* Grid layout: left content | centered icon | right content */
   display: grid;
-  grid-template-columns: 1fr 64px 1fr;
+  grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr);
   gap: 16px;
   align-items: center;
   grid-auto-rows: auto;
@@ -112,6 +112,7 @@
   height: 64px;
   grid-row: 1;
   align-self: center;
+  min-width: 0; /* prevent content from expanding the grid track */
 }
 /* Absolutely centered inner block to align text with the icon center */
 .contentInner {
@@ -187,7 +188,13 @@
 }
 /* Specific tweak for the word "Ceremonia" on small screens */
 @media (max-width: 700px) {
-  .titleCeremonia { font-size: clamp(0.86rem, 2.1vw, 0.98rem); }
+  .titleCeremonia {
+    font-size: clamp(0.82rem, 1.9vw, 0.95rem);
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 @media (max-width: 700px) {
   .headerRow { margin-bottom: 1.1rem; }
@@ -208,7 +215,7 @@
   /* add top padding to the container on mobile only */
   .container { padding: 12px 2vw 0; } /* much smaller top padding */
   .timelineItem {
-    grid-template-columns: 1fr 48px 1fr;
+  grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
     gap: 12px;
   }
   .timelineContent {
