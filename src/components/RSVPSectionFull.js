@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import iconRSVP from '../assets/icon-rsvp-b.png';
 import './RSVPSectionFull.css';
 import { getOrCreateDeviceId, getRsvpSubmitted, markRsvpSubmitted, getRsvpDraft, saveRsvpDraft, clearRsvpDraft } from '../utils/device';
@@ -27,6 +28,20 @@ const RSVPSectionFull = () => {
   useEffect(() => {
     saveRsvpDraft({ guestName, foodRestriction, otherRestriction, companions });
   }, [guestName, foodRestriction, otherRestriction, companions]);
+
+  // Lock background scroll when modal is open (prevents page from moving under fixed overlay)
+  useEffect(() => {
+    if (showModal) {
+      const prevBodyOverflow = document.body.style.overflow;
+      const prevHtmlOverflow = document.documentElement.style.overflow;
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevBodyOverflow;
+        document.documentElement.style.overflow = prevHtmlOverflow;
+      };
+    }
+  }, [showModal]);
 
   const addCompanion = () => {
     setCompanions([...companions, { name: "", foodRestriction: "No", otherRestriction: "" }]);
@@ -128,7 +143,7 @@ const RSVPSectionFull = () => {
             </p>
           )}
         </div>
-      {showModal && (
+      {showModal && createPortal((
         <div
           style={{
             position: 'fixed',
@@ -278,7 +293,7 @@ const RSVPSectionFull = () => {
             </form>
           </div>
         </div>
-      )}
+      ), document.body)}
       {/* Decorative bottom flourish rotated */}
     <img
         src="/assets/passion-1.png"
