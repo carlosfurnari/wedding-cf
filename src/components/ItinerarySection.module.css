@@ -185,6 +185,10 @@
   font-weight: 700;
   margin: 0;
 }
+/* Specific tweak for the word "Ceremonia" on small screens */
+@media (max-width: 700px) {
+  .titleCeremonia { font-size: clamp(0.86rem, 2.1vw, 0.98rem); }
+}
 @media (max-width: 700px) {
   .headerRow { margin-bottom: 1.1rem; }
   .headerIcon { margin-bottom: 0.3rem; }

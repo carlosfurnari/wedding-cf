@@ -42,7 +42,7 @@ const ItinerarySection = () => {
               <div className={styles.timelineContent}>
                 <div className={styles.contentInner}>
                   <p className={styles.time}>{item.time}</p>
-                  <h2 className={styles.title}>{item.title}</h2>
+                  <h2 className={`${styles.title} ${item.title === 'Ceremonia' ? styles.titleCeremonia : ''}`}>{item.title}</h2>
                 </div>
               </div>
             </div>
