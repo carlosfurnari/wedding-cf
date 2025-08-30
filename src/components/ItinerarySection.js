@@ -56,7 +56,9 @@ const ItinerarySection = () => {
         width: 'clamp(320px, 48vw, 900px)',
         height: 'auto',
         pointerEvents: 'none',
-        zIndex: 0
+  zIndex: 0,
+  opacity: 0.7,
+  filter: 'brightness(1.06) saturate(0.9)'
       }}
     />
   </section>
