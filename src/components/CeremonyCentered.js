@@ -229,7 +229,7 @@ const CeremonyCentered = () => {
                 marginBottom: 12
               }}
             />
-            <p style={{marginBottom: 12}}>Hay estacionamiento disponible en el lugar y en las inmediaciones. Consultá al llegar por disponibilidad.</p>
+            <p style={{marginBottom: 12}}>En las zonas verdes se puede estacionar, en las rojas no. Hay estacionamiento pago en Freire 3630</p>
           </div>
         </div>
       ), document.body)}
