@@ -124,8 +124,8 @@ const RSVPSectionFull = () => {
         flexDirection: 'column',
         alignItems: 'center',
   justifyContent: 'flex-start',
-  /* top padding prevents overlap with previous section's wave; bottom keeps space for our own bottom flourish */
-  padding: 'clamp(20px, 5vw, 32px) 1rem clamp(80px, 16vw, 168px) 1rem',
+  /* remove top padding so the top image sits higher; keep bottom for flourish */
+  padding: '0 1rem clamp(80px, 16vw, 168px) 1rem',
         boxSizing: 'border-box'
       }}
       id="rsvp"

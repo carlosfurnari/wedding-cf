@@ -5,11 +5,13 @@ import iconRecepcion from '../assets/timeline-icon-recepcion.png';
 import iconFin from '../assets/timeline-icon-last-call.png';
 import iconCena from '../assets/timeline-icon-cena.png';
 import iconBrindis from '../assets/timeline-icon-brindis.png';
+import iconNovios from '../assets/timeline-icon-novios-a.png';
 import styles from './ItinerarySection.module.css';
 import decoLove from '../assets/lovestory-1.png';
 
 
 const timeline = [
+  { time: '19:00hs', title: 'Inicio', icon: iconNovios },
   { time: '19:30hs', title: 'Ceremonia', icon: iconCeremonia },
   { time: '20:00hs', title: 'Recepción', icon: iconRecepcion },
   { time: '22:00hs', title: 'Cena', icon: iconCena },
