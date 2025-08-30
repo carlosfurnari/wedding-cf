@@ -24,7 +24,12 @@ const ItinerarySection = () => {
   <section className={styles.sectionWrapper} id="itinerario">
   <div className={styles.container}>
       <div className={styles.headerRow}>
-        <img className={styles.headerIcon} src={iconTimeline} width="110" alt="Itinerario" style={{opacity: 0.5}} />
+        <img
+          className={styles.headerIcon}
+          src={iconTimeline}
+          alt="Itinerario"
+          style={{ opacity: 0.5, width: 'clamp(72px, 18vw, 100px)', height: 'auto' }}
+        />
         <h2 className="lovestory text-center text-gris">Itinerario</h2>
       </div>
       <div className={styles.timelineContainer}>

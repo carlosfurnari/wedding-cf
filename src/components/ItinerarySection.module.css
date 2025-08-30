@@ -186,6 +186,8 @@
   margin: 0;
 }
 @media (max-width: 700px) {
+  .headerRow { margin-bottom: 1.1rem; }
+  .headerIcon { margin-bottom: 0.3rem; }
   /* Allow titles to wrap on mobile so long labels (e.g., "Torta y Brindis") use two lines */
   .title {
     white-space: normal;
@@ -194,13 +196,13 @@
   line-height: 1.4; /* extra interline spacing to avoid overlapping strokes */
   }
   .timeline {
-  max-width: 98vw;
-  padding: 40px 0 0 0; /* reduced top spacing to tighten gap below header */
+    max-width: 98vw;
+    padding: 0; /* remove initial top gap */
   }
   .headerRow { margin-bottom: 1.5rem; }
-  .timeline::before { top: 40px; }
+  .timeline::before { top: 12px; } /* start line closer to top */
   /* add top padding to the container on mobile only */
-  .container { padding: 56px 2vw 0; }
+  .container { padding: 12px 2vw 0; } /* much smaller top padding */
   .timelineItem {
     grid-template-columns: 1fr 48px 1fr;
     gap: 12px;
@@ -221,6 +223,8 @@
   }
   /* add extra spacing for the very first icon to clear top deco */
   .timelineItem:first-child .timelineIcon { margin-top: 16px; }
+  /* remove extra spacing above first icon */
+  .timelineItem:first-child .timelineIcon { margin-top: 0; }
   .timelineIconImg {
     width: 32px;
     height: 32px;
@@ -291,8 +295,8 @@
     background-size: clamp(420px, 85vw, 900px) auto;
   }
   .headerRow { margin-bottom: 1.25rem; }
-  .timeline { padding-top: 40px; }
-  .timeline::before { top: 40px; }
-  .timelineItem:first-child .timelineIcon { margin-top: 12px; }
+  .timeline { padding-top: 0; }
+  .timeline::before { top: 12px; }
+  .timelineItem:first-child .timelineIcon { margin-top: 0; }
   .timelineContent { padding: 0; }
 }
