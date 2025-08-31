@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import iconAnillos from '../assets/icon-anillos-v2-b.png';
-import tomateImg from '../assets/tomate.jpeg';
-import mapa1 from '../assets/mapa1.png';
+import tomateImg from '../assets/tomatev2.jpg';
+import mapa1 from '../assets/mapav2.png';
 import bg25 from '../assets/bg25.jpg';
 import './Ceremony.css';
 

@@ -144,7 +144,7 @@ const RSVPSectionFull = () => {
       userSelect: 'none',
       position: 'relative',
   zIndex: 1,
-  opacity: 0.7,
+  opacity: 0.5,
   filter: 'brightness(1.06) saturate(0.9)'
           }}
         />
@@ -337,7 +337,7 @@ const RSVPSectionFull = () => {
           height: 'auto',
           margin: 0,
           pointerEvents: 'none',
-          opacity: 0.7,
+          opacity: 0.5,
           filter: 'brightness(1.06) saturate(0.9)'
         }}
       />

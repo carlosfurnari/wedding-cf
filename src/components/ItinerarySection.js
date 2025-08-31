@@ -62,7 +62,7 @@ const ItinerarySection = () => {
         height: 'auto',
         pointerEvents: 'none',
   zIndex: 0,
-  opacity: 0.7,
+  opacity: 0.5,
   filter: 'brightness(1.06) saturate(0.9)'
       }}
     />

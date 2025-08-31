@@ -5,7 +5,7 @@ import dressIcon from '../assets/icon-percha-b.png';
 const DressSection = () => {
   return (
   <section className={styles.sectionWrapper}>
-      <div className={styles.innerContainer}>
+      <div className={styles.innerContainer} style={{ position: 'relative', zIndex: 1 }}>
         {/* Dress Code */}
         <div className={styles.card}>
           <img src={dressIcon} alt="Dress Code" className={styles.icon} />
@@ -14,7 +14,7 @@ const DressSection = () => {
           <a
             className="btn btn--secondary btn--md"
             style={{ margin: '0 auto', display: 'inline-block', marginBottom: 0 }}
-            href="https://pin.it/zk33JO4mv"
+            href="https://ar.pinterest.com/flopa20032/flor-carlos-dress-code/?invite_code=d85e0b7e451b4f669e06de5ca6a74d62&sender=423690414852203287"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -22,6 +22,7 @@ const DressSection = () => {
           </a>
         </div>
       </div>
+  {/* Bottom flourish handled via CSS ::after in Dress.module.css */}
     </section>
   );
 };

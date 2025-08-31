@@ -1,12 +1,54 @@
 .sectionWrapper {
+  --dress-flourish-h: clamp(150px, 34vw, 120px);
+  --dress-center-tweak: 0px; /* adjust +/- to nudge content if needed */
   width: 100%;
   position: relative;
   /* Apply section background full-width */
-  background: url('../assets/bg25.jpg') no-repeat 50% 0 / cover;
-  padding: 0 0 64px 0;
+  /* Top brush moved to ::before for exact symmetry */
+  background: none;
+  background-color: #ffffff; /* solid center to avoid visible seam */
+  padding: calc(var(--dress-flourish-h) + var(--dress-center-tweak)) 0 calc(var(--dress-flourish-h) - var(--dress-center-tweak)) 0; /* symmetric spacing top/bottom */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* center content between brushes */
+  overflow: visible; /* ensure pseudo-elements are not clipped */
+}
+
+/* Decorative bottom flourish */
+.sectionWrapper::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0; /* pegado al borde inferior */
+  height: var(--dress-flourish-h);
+  width: 100vw; /* span full viewport width */
+  transform: translateX(-50%);
+  background-image: url('../assets/bg26.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 100%; /* bottom-aligned */
+  background-size: 100% 100%; /* fill strip fully */
+  pointer-events: none;
+  z-index: 0;
+  filter: brightness(1.06) saturate(0.9);
+}
+
+/* Decorative top flourish (same height as bottom) */
+.sectionWrapper::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: var(--dress-flourish-h);
+  width: 100vw; /* span full viewport width */
+  transform: translateX(-50%);
+  background-image: url('../assets/bg25.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0; /* top-aligned */
+  background-size: 100% 100%; /* fill strip fully */
+  pointer-events: none;
+  z-index: 0;
+  filter: brightness(1.06) saturate(0.9);
 }
 
 .innerContainer {
@@ -17,7 +59,7 @@
   max-width: 1100px;
   width: 100%;
   /* Move content down a bit within the section */
-  margin-top: clamp(24px, 6vw, 64px);
+  margin-top: 0; /* centered vertically between top and bottom brushes */
 }
 
 .card {

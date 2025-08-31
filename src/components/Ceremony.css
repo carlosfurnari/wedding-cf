@@ -118,6 +118,8 @@
 
 /* Fondo de toda la sección de ceremonia (envolvente) */
 .ceremonyfiesta-bg {
+  /* Local background color for this section (slightly lighter cream) */
+  --ceremony-bg: #f7f4f1;
   width: 100%;
   /* Full viewport like the hero */
   height: 100vh;          /* fallback */
@@ -128,7 +130,7 @@
   align-items: center;
   justify-content: center;
   padding: 0; /* avoid extra height beyond viewport */
-  background-color: transparent;
+  background-color: var(--ceremony-bg);
   background-attachment: scroll; /* safer on mobile */
   position: relative;
   overflow: hidden; /* clip decorative waves to this section */
@@ -155,12 +157,11 @@
   height: 160px; /* top wave height */
   background: url('../assets/wave-mid-brush.png') no-repeat 50% 0;
   background-size: 100% 100%; /* fill width and height */
-  background-color: var(--bg); /* mask any transparency in the brush */
+  background-color: var(--ceremony-bg); /* match section background */
   transform: rotate(180deg); /* rotate 180° vertically */
   pointer-events: none;
   z-index: 0;
-  opacity: 0.78; /* soften color */
-  filter: brightness(1.06) saturate(0.9);
+  opacity: 0.5; /* soften color */
 }
 
 .ceremonyfiesta-bg::after {
@@ -172,11 +173,10 @@
   height: 160px; /* taller wave */
   background: url('../assets/wave-mid-brush.png') no-repeat 50% 100%;
   background-size: 100% 100%; /* fill width and height */
-  background-color: var(--bg); /* mask any transparency in the brush */
+  background-color: var(--ceremony-bg); /* match section background */
   pointer-events: none;
   z-index: 0;
-  opacity: 0.78; /* soften color */
-  filter: brightness(1.06) saturate(0.9);
+  opacity: 0.5; /* soften color */
 }
 
 @media (max-width: 768px) {
