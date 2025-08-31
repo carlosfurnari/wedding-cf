@@ -211,7 +211,11 @@
   padding: 0 0 clamp(64px, 16vw, 120px) 0; /* add bottom space to clear decorative image */
   }
   .headerRow { margin-bottom: 1.5rem; }
-  .timeline::before { top: 12px; } /* start line closer to top */
+  .timeline::before {
+    top: 12px;                 /* start line closer to top */
+    bottom: clamp(64px, 16vw, 120px); /* stop above bottom padding */
+    height: auto;              /* allow top/bottom anchors to define height */
+  }
   /* add top padding to the container on mobile only */
   .container { padding: 12px 2vw 0; } /* much smaller top padding */
   .timelineItem {
@@ -307,7 +311,11 @@
   }
   .headerRow { margin-bottom: 1.25rem; }
   .timeline { padding-top: 0; padding-bottom: clamp(72px, 18vw, 140px); }
-  .timeline::before { top: 12px; }
+  .timeline::before {
+    top: 12px;
+    bottom: clamp(72px, 18vw, 140px); /* stop above bottom padding */
+    height: auto;
+  }
   .timelineItem:first-child .timelineIcon { margin-top: 0; }
   .timelineContent { padding: 0; }
 }

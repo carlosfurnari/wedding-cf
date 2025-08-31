@@ -185,15 +185,17 @@
     height: 100dvh;
     height: 100svh; /* final: svh */
     min-height: 100svh;
-    padding: 0;
+  /* Push content away from decorative waves (match wave heights) */
+  padding-top: clamp(80px, 16vw, 120px);
+  padding-bottom: clamp(80px, 16vw, 120px);
   }
   .ceremonyfiesta-bg::before { height: 120px; }
   .ceremonyfiesta-bg::after { height: 120px; }
   .ceremonyfiesta-section {
-    padding: 1.4rem 1rem;
+  padding: 1.4rem 1rem; /* horizontal padding only */
     transform: translateY(0);
-    padding-top: clamp(80px, 16vw, 120px);   /* keep content clear of top wave */
-    padding-bottom: clamp(80px, 16vw, 120px);/* keep content clear of bottom wave */
+  padding-top: 0;   /* spacing handled by outer container */
+  padding-bottom: 0;/* spacing handled by outer container */
   }
   .ceremonyfiesta-img,
   .ceremonyfiesta-img-round { width: 160px; height: 160px; }
@@ -205,13 +207,15 @@
     height: 100dvh;
     height: 100svh; /* final: svh */
     min-height: 100svh;
-    padding: 0;
+  /* Match smaller wave heights */
+  padding-top: clamp(64px, 18vw, 96px);
+  padding-bottom: clamp(64px, 18vw, 96px);
   }
   .ceremonyfiesta-section {
-    padding: 1.25rem 1rem;
+  padding: 1.25rem 1rem; /* horizontal only */
     transform: translateY(0);
-    padding-top: clamp(64px, 18vw, 96px);
-    padding-bottom: clamp(64px, 18vw, 96px);
+  padding-top: 0;
+  padding-bottom: 0;
   }
   .ceremonyfiesta-bg::before { height: 80px; }
   .ceremonyfiesta-bg::after { height: 80px; }
