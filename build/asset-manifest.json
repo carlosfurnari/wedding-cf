@@ -1,21 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.fbd59187.css",
-    "main.js": "/static/js/main.31dba0a4.js",
+    "main.css": "/static/css/main.89094ac3.css",
+    "main.js": "/static/js/main.a160d842.js",
     "static/media/fondoFull2.png": "/static/media/fondoFull2.97316b2a0ec03487d3d4.png",
-    "static/media/mapa1.png": "/static/media/mapa1.14b0afd459122143b132.png",
+    "static/media/mapav2.png": "/static/media/mapav2.55f4f6c54159f48b3e25.png",
     "static/media/wave-mid-brush.png": "/static/media/wave-mid-brush.d63cdaa3251c37de0b9e.png",
-    "static/media/tomate.jpeg": "/static/media/tomate.cf3b38d6cfd09a9dad31.jpeg",
+    "static/media/tomatev2.jpg": "/static/media/tomatev2.f1439d33cee65f137d5c.jpg",
     "static/media/fondoCel.jpg": "/static/media/fondoCel.cd6c9f68d1a1534aba28.jpg",
-    "static/media/bg25.jpg": "/static/media/bg25.369029517aa7ca533b55.jpg",
     "static/media/lovestory-2.png": "/static/media/lovestory-2.a76825a5d461703e9380.png",
     "static/media/lovestory-1.png": "/static/media/lovestory-1.b4050b1934e5a16d669e.png",
     "index.html": "/index.html",
-    "main.fbd59187.css.map": "/static/css/main.fbd59187.css.map",
-    "main.31dba0a4.js.map": "/static/js/main.31dba0a4.js.map"
+    "main.89094ac3.css.map": "/static/css/main.89094ac3.css.map",
+    "main.a160d842.js.map": "/static/js/main.a160d842.js.map"
   },
   "entrypoints": [
-    "static/css/main.fbd59187.css",
-    "static/js/main.31dba0a4.js"
+    "static/css/main.89094ac3.css",
+    "static/js/main.a160d842.js"
   ]
 }
