@@ -183,10 +183,9 @@
 
 @media (max-width: 768px) {
   .ceremonyfiesta-bg {
-    height: 100vh;
-    height: 100dvh;
-    height: 100svh; /* final: svh */
-    min-height: 100svh;
+  /* Let the section adapt to its content on mobile */
+  height: auto;
+  min-height: auto;
     /* Match padding to wave sizes to avoid overlap */
     --wave-h: 120px;
     padding-top: calc(var(--wave-h) + env(safe-area-inset-top, 0px));
@@ -205,10 +204,9 @@
 
 @media (max-width: 480px) {
   .ceremonyfiesta-bg {
-    height: 100vh;
-    height: 100dvh;
-    height: 100svh; /* final: svh */
-    min-height: 100svh;
+  /* Content-based height on very small screens too */
+  height: auto;
+  min-height: auto;
     /* Match smaller wave heights exactly */
     --wave-h: 80px;
     padding-top: calc(var(--wave-h) + env(safe-area-inset-top, 0px));
