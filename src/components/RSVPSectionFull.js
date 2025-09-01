@@ -219,7 +219,7 @@ const RSVPSectionFull = () => {
               position: 'absolute', top: 16, right: 18, background: 'none', border: 'none',
               fontSize: '2.2rem', color: 'var(--primary)', cursor: 'pointer', lineHeight: 1
              }} onClick={() => { setShowModal(false); }}>&times;</button>
-            <h3 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1.2rem'}}>Confirmar asistencia</h3>
+            <h3 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1.2rem'}}>Asistencia</h3>
             <form style={{width: '100%'}} onSubmit={handleSubmit}>
               <label className="form-label" style={{textAlign: 'left'}}>Nombre y apellido</label>
               <input

@@ -193,10 +193,11 @@
     padding-bottom: calc(var(--wave-h) + env(safe-area-inset-bottom, 0px));
   }
   .ceremonyfiesta-section {
-  padding: 1.4rem 1rem; /* horizontal padding only */
+  padding: 1.4rem 1rem; /* keep horizontal padding */
     transform: translateY(0);
-  padding-top: 0;   /* spacing handled by outer container */
-  padding-bottom: 0;/* spacing handled by outer container */
+  /* add a small inner cushion above/below the content on mobile */
+  padding-top: clamp(12px, 4vw, 24px);
+  padding-bottom: clamp(16px, 5vw, 28px);
   }
   .ceremonyfiesta-img,
   .ceremonyfiesta-img-round { width: 160px; height: 160px; }
@@ -214,10 +215,11 @@
     padding-bottom: calc(var(--wave-h) + env(safe-area-inset-bottom, 0px));
   }
   .ceremonyfiesta-section {
-  padding: 1.25rem 1rem; /* horizontal only */
+  padding: 1.25rem 1rem; /* keep horizontal only base */
     transform: translateY(0);
-  padding-top: 0;
-  padding-bottom: 0;
+  /* slightly larger cushion on very small screens */
+  padding-top: clamp(14px, 6vw, 26px);
+  padding-bottom: clamp(18px, 7vw, 30px);
   }
   .ceremonyfiesta-img,
   .ceremonyfiesta-img-round { width: 140px; height: 140px; }
