@@ -8,6 +8,7 @@ import iconBrindis from '../assets/timeline-icon-brindis.png';
 import iconNovios from '../assets/timeline-icon-novios-a.png';
 import styles from './ItinerarySection.module.css';
 import decoLove from '../assets/lovestory-1.png';
+import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineOppositeContent, TimelineDot } from '@mui/lab';
 
 
 const timeline = [
@@ -34,19 +35,33 @@ const ItinerarySection = () => {
       </div>
       <div className={styles.timelineContainer}>
         <div className={styles.timeline}>
+          <Timeline
+            position="alternate"
+            sx={{
+              width: '100%',
+              mx: 'auto',
+              pt: 2,
+              // remove default before spacer so opposite/content are symmetric
+              '& .MuiTimelineItem-root:before': { flex: 0, padding: 0 }
+            }}
+          >
           {timeline.map((item, idx) => (
-            <div className={styles.timelineItem} key={item.title}>
-              <div className={styles.timelineIcon}>
-                <img src={item.icon} alt={item.title} className={styles.timelineIconImg} style={{opacity: 0.6}} />
-              </div>
-              <div className={styles.timelineContent}>
-                <div className={styles.contentInner}>
-                  <p className={styles.time}>{item.time}</p>
-                  <h2 className={`${styles.title} ${item.title === 'Ceremonia' ? styles.titleCeremonia : ''}`}>{item.title}</h2>
-                </div>
-              </div>
-            </div>
+            <TimelineItem key={item.title}>
+              <TimelineOppositeContent sx={{ m: 'auto 0', flex: 1, textAlign: idx % 2 === 0 ? 'right' : 'left' }}>
+                <p className={styles.time} style={{ margin: 0 }}>{item.time}</p>
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot sx={{ backgroundColor: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.07)', width: { xs: 48, sm: 64 }, height: { xs: 48, sm: 64 }, p: 0 }}>
+                  <img src={item.icon} alt={item.title} className={styles.timelineIconImg} style={{ opacity: 0.6, width: '70%', height: '70%' }} />
+                </TimelineDot>
+                {/* No connector: the central line is drawn by CSS in .timeline::before */}
+              </TimelineSeparator>
+              <TimelineContent sx={{ py: '12px', px: 2, flex: 1 }}>
+                <h2 className={`${styles.title} ${item.title === 'Ceremonia' ? styles.titleCeremonia : ''}`}>{item.title}</h2>
+              </TimelineContent>
+            </TimelineItem>
           ))}
+          </Timeline>
         </div>
       </div>
     </div>

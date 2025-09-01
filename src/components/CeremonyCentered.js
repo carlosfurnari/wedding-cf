@@ -5,6 +5,11 @@ import tomateImg from '../assets/tomatev2.jpg';
 import mapa1 from '../assets/mapav2.png';
 import bg25 from '../assets/bg25.jpg';
 import './Ceremony.css';
+// MUI
+import { Button, Stack, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import EventIcon from '@mui/icons-material/Event';
+import MapIcon from '@mui/icons-material/Map';
+import LocalParkingIcon from '@mui/icons-material/LocalParking';
 
 const CeremonyCentered = () => {
   const [showParkingModal, setShowParkingModal] = useState(false);
@@ -130,109 +135,36 @@ const CeremonyCentered = () => {
         <p className="text-center text-gris" style={{textAlign: 'center', width: '100%'}}>
           "TOMATE", Infanta Isabel 555, CABA
         </p>
-        <div className="ceremonyfiesta-buttons">
-          <button className="ceremonyfiesta-btn" onClick={handleAddToCalendar} aria-label="Agregar al calendario">
-            <i className="icon-calendar" aria-hidden="true"></i>  AGENDAR
-          </button>
-          <a
-            className="ceremonyfiesta-btn"
-            href="https://www.google.com/maps/place/Av.+Infanta+Isabel+555,+CABA"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="icon-map-marker" aria-hidden="true"></i>  ¿CÓMO LLEGAR?
-          </a>
-          <button
-            className="ceremonyfiesta-btn"
-            onClick={() => { setScrollYBeforeModal(window.scrollY || window.pageYOffset || 0); setShowParkingModal(true); }}
-          >
-            <i className="icon-car" aria-hidden="true"></i>  ESTACIONAMIENTO
-          </button>
-        </div>
+        <Stack className="ceremonyfiesta-buttons" direction={{ xs: 'column', sm: 'row' }} spacing={1}>
+          <Button variant="contained" color="primary" startIcon={<EventIcon />} onClick={handleAddToCalendar} aria-label="Agregar al calendario" sx={{ minHeight: 38, borderRadius: '28px' }}>
+            AGENDAR
+          </Button>
+          <Button component="a" href="https://www.google.com/maps/place/Av.+Infanta+Isabel+555,+CABA" target="_blank" rel="noopener noreferrer" variant="outlined" color="primary" startIcon={<MapIcon />} sx={{ minHeight: 38, borderRadius: '28px' }}>
+            ¿CÓMO LLEGAR?
+          </Button>
+          <Button variant="outlined" color="primary" startIcon={<LocalParkingIcon />} onClick={() => { setScrollYBeforeModal(window.scrollY || window.pageYOffset || 0); setShowParkingModal(true); }} sx={{ minHeight: 38, borderRadius: '28px' }}>
+            ESTACIONAMIENTO
+          </Button>
+        </Stack>
       </div>
-      {showParkingModal && createPortal((
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0,0,0,0.45)',
-            display: 'grid',
-            placeItems: 'center',
-            zIndex: 1000,
-            padding: '16px',
-            boxSizing: 'border-box',
-            overflowY: 'auto',
-            overflowX: 'hidden'
-          }}
-          onClick={() => { setShowParkingModal(false); }}
-        >
-          <div
-            style={{
-              background: '#fff',
-              borderRadius: 24,
-              padding: '32px 24px 24px 24px',
-              maxWidth: 'min(420px, 100%)',
-              width: '100%',
-              boxShadow: '0 4px 32px rgba(0,0,0,0.12)',
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              overflow: 'hidden' /* ensure large script titles don't overflow the rounded box */
-            }}
-            onClick={e => e.stopPropagation()}
-          >
-            <button
-              style={{
-                position: 'absolute',
-                top: 16,
-                right: 18,
-                background: 'none',
-                border: 'none',
-                fontSize: '2.2rem',
-                color: 'var(--primary)',
-                cursor: 'pointer',
-                lineHeight: 1
-              }}
-              onClick={() => { setShowParkingModal(false); }}
-            >
-              &times;
-            </button>
-      <h3
-              className="lovestory text-gris"
-              style={{
-                textAlign: 'center',
-                width: '100%',
-                margin: '0 0 1.2rem 0', // remove default top margin so it doesn't escape the modal
-                padding: '0 8px',
-                boxSizing: 'border-box',
-        fontSize: 'clamp(1.15rem, 4.4vw, 1.55rem)',
-        lineHeight: 1.05,
-        whiteSpace: 'nowrap',
-                overflowWrap: 'anywhere',
-                wordBreak: 'break-word'
-              }}
-            >
-              Estacionamiento
-            </h3>
-            <img
-              src={mapa1}
-              alt="Mapa estacionamiento"
-              style={{
-                width: '100%',
-                maxWidth: 340,
-                borderRadius: 16,
-                boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-                marginBottom: 12
-              }}
-            />
-            <p style={{marginBottom: 12}}>En las zonas verdes se puede estacionar, en las rojas no. Hay estacionamiento pago en Freire 3630.</p>
-          </div>
-        </div>
-      ), document.body)}
+      <Dialog open={showParkingModal} onClose={() => setShowParkingModal(false)} maxWidth="xs" fullWidth>
+        <DialogTitle>
+          <span className="lovestory text-gris">Estacionamiento</span>
+        </DialogTitle>
+        <DialogContent dividers>
+          <img
+            src={mapa1}
+            alt="Mapa estacionamiento"
+            style={{ width: '100%', borderRadius: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.08)', marginBottom: 12 }}
+          />
+          <p style={{ margin: 0 }}>En las zonas verdes se puede estacionar, en las rojas no. Hay estacionamiento pago en Freire 3630.</p>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setShowParkingModal(false)} autoFocus>
+            Cerrar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </section>
   );
 };
