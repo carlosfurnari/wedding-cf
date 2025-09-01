@@ -120,6 +120,8 @@
 .ceremonyfiesta-bg {
   /* Local background color for this section (slightly lighter cream) */
   --ceremony-bg: #f7f4f1;
+  /* Shared decorative wave height; overridden per breakpoint */
+  --wave-h: 160px;
   width: 100%;
   /* Full viewport like the hero */
   height: 100vh;          /* fallback */
@@ -154,7 +156,7 @@
   left: 0;
   right: 0;
   top: -1px; /* overlap slightly to avoid gaps */
-  height: 160px; /* top wave height */
+  height: var(--wave-h); /* top wave height */
   background: url('../assets/wave-mid-brush.png') no-repeat 50% 0;
   background-size: 100% 100%; /* fill width and height */
   background-color: var(--ceremony-bg); /* match section background */
@@ -170,7 +172,7 @@
   left: 0;
   right: 0;
   bottom: -1px; /* overlap slightly to avoid gaps */
-  height: 160px; /* taller wave */
+  height: var(--wave-h); /* bottom wave height */
   background: url('../assets/wave-mid-brush.png') no-repeat 50% 100%;
   background-size: 100% 100%; /* fill width and height */
   background-color: var(--ceremony-bg); /* match section background */
@@ -185,12 +187,11 @@
     height: 100dvh;
     height: 100svh; /* final: svh */
     min-height: 100svh;
-  /* Push content away from decorative waves (match wave heights) */
-  padding-top: clamp(80px, 16vw, 120px);
-  padding-bottom: clamp(80px, 16vw, 120px);
+    /* Match padding to wave sizes to avoid overlap */
+    --wave-h: 120px;
+    padding-top: calc(var(--wave-h) + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(var(--wave-h) + env(safe-area-inset-bottom, 0px));
   }
-  .ceremonyfiesta-bg::before { height: 120px; }
-  .ceremonyfiesta-bg::after { height: 120px; }
   .ceremonyfiesta-section {
   padding: 1.4rem 1rem; /* horizontal padding only */
     transform: translateY(0);
@@ -207,9 +208,10 @@
     height: 100dvh;
     height: 100svh; /* final: svh */
     min-height: 100svh;
-  /* Match smaller wave heights */
-  padding-top: clamp(64px, 18vw, 96px);
-  padding-bottom: clamp(64px, 18vw, 96px);
+    /* Match smaller wave heights exactly */
+    --wave-h: 80px;
+    padding-top: calc(var(--wave-h) + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(var(--wave-h) + env(safe-area-inset-bottom, 0px));
   }
   .ceremonyfiesta-section {
   padding: 1.25rem 1rem; /* horizontal only */
@@ -217,8 +219,6 @@
   padding-top: 0;
   padding-bottom: 0;
   }
-  .ceremonyfiesta-bg::before { height: 80px; }
-  .ceremonyfiesta-bg::after { height: 80px; }
   .ceremonyfiesta-img,
   .ceremonyfiesta-img-round { width: 140px; height: 140px; }
   .ceremonyfiesta-buttons { flex-direction: column; align-items: stretch; gap: 0.6rem; }

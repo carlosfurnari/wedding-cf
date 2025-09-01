@@ -213,7 +213,7 @@
   .headerRow { margin-bottom: 1.5rem; }
   .timeline::before {
     top: 12px;                 /* start line closer to top */
-    bottom: clamp(64px, 16vw, 120px); /* stop above bottom padding */
+  bottom: calc(clamp(64px, 16vw, 120px) + 10px); /* end a bit higher than bottom padding */
     height: auto;              /* allow top/bottom anchors to define height */
   }
   /* add top padding to the container on mobile only */
@@ -313,7 +313,7 @@
   .timeline { padding-top: 0; padding-bottom: clamp(72px, 18vw, 140px); }
   .timeline::before {
     top: 12px;
-    bottom: clamp(72px, 18vw, 140px); /* stop above bottom padding */
+  bottom: calc(clamp(72px, 18vw, 140px) + 12px); /* end a bit higher than bottom padding */
     height: auto;
   }
   .timelineItem:first-child .timelineIcon { margin-top: 0; }
