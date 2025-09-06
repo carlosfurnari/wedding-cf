@@ -15,7 +15,7 @@ const timeline = [
   { time: '19:30hs', title: 'Ceremonia', icon: iconCeremonia },
   { time: '20:00hs', title: 'Recepción', icon: iconRecepcion },
   { time: '22:00hs', title: 'Cena', icon: iconCena },
-  { time: '00:00hs', title: 'Torta y Brindis', icon: iconBrindis },
+  { time: '00:00hs', title: 'Brindis', icon: iconBrindis },
   { time: '01:45hs', title: 'Fin de Fiesta', icon: iconFin },
 ];
 
