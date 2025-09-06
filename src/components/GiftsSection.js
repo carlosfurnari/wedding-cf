@@ -130,11 +130,11 @@ const GiftsSection = () => {
               &times;
             </button>
             <h3 className="lovestory text-gris" style={{textAlign: 'center', width: '100%', marginBottom: '1.2rem'}}>Datos bancarios</h3>
-            <p style={{marginBottom: 12}}><strong>Titular:</strong> Carlos Furnari</p>
-            <p style={{marginBottom: 12}}><strong>Cuenta $:</strong> 0720119230000003429197</p>
-            <p style={{marginBottom: 12}}><strong>Alias $:</strong> fiesta.flor.carlos.p</p>
-            <p style={{marginBottom: 12}}><strong>Cuenta US$:</strong> 0720119231000003429266</p>
-            <p style={{marginBottom: 12}}><strong>Alias US$:</strong> fiesta.flor.carlos.d</p>
+            <p style={{textAlign: 'left', marginBottom: 21}}><strong>Titular:</strong> Carlos Furnari</p>
+            <p style={{textAlign: 'left', marginBottom: 7}}><strong>Cuenta $:</strong> 0720119230000003429197</p>
+            <p style={{textAlign: 'left', marginBottom: 21}}><strong>Alias $:</strong> fiesta.flor.carlos.p</p>
+            <p style={{textAlign: 'left', marginBottom: 7}}><strong>Cuenta US$:</strong> 0720119231000003429266</p>
+            <p style={{textAlign: 'left', marginBottom: 12}}><strong>Alias US$:</strong> fiesta.flor.carlos.d</p>
           </div>
         </div>
       ), document.body)}
