@@ -11,6 +11,7 @@ const RSVPSectionFull = () => {
   const [foodRestriction, setFoodRestriction] = useState("No");
   const [otherRestriction, setOtherRestriction] = useState("");
   const [companions, setCompanions] = useState([]);
+  const [errors, setErrors] = useState({ guestName: '', otherRestriction: '', companions: [] });
   const deviceId = useMemo(() => getOrCreateDeviceId(), []);
   const [submitted, setSubmitted] = useState(() => getRsvpSubmitted());
   const [submitting, setSubmitting] = useState(false);
@@ -80,6 +81,10 @@ const RSVPSectionFull = () => {
 
   const addCompanion = () => {
     setCompanions([...companions, { name: "", foodRestriction: "No", otherRestriction: "" }]);
+    setErrors((prev) => ({
+      ...prev,
+      companions: [...(prev.companions || []), { name: '', otherRestriction: '' }]
+    }));
   };
 
   const updateCompanion = (idx, field, value) => {
@@ -89,14 +94,50 @@ const RSVPSectionFull = () => {
         : c
     );
     setCompanions(updated);
+    // clear errors for this field when user types a value
+    setErrors((prev) => {
+      const next = { ...prev, companions: [...(prev.companions || [])] };
+      if (!next.companions[idx]) next.companions[idx] = { name: '', otherRestriction: '' };
+      if (field === 'name') next.companions[idx].name = value.trim() ? '' : next.companions[idx].name;
+      if (field === 'otherRestriction') next.companions[idx].otherRestriction = value.trim() ? '' : next.companions[idx].otherRestriction;
+      if (field === 'foodRestriction' && value !== 'Otras') next.companions[idx].otherRestriction = '';
+      return next;
+    });
   };
 
   const removeCompanion = (idx) => {
     setCompanions(companions.filter((_, i) => i !== idx));
+    setErrors((prev) => ({
+      ...prev,
+      companions: (prev.companions || []).filter((_, i) => i !== idx)
+    }));
+  };
+
+  const validateForm = () => {
+    const nextErrors = {
+      guestName: '',
+      otherRestriction: '',
+      companions: companions.map(() => ({ name: '', otherRestriction: '' }))
+    };
+    if (!guestName.trim()) nextErrors.guestName = 'Requerido';
+    if (foodRestriction === 'Otras' && !otherRestriction.trim()) nextErrors.otherRestriction = 'Requerido';
+    companions.forEach((c, i) => {
+      if (!c.name.trim()) nextErrors.companions[i].name = 'Requerido';
+      if (c.foodRestriction === 'Otras' && !c.otherRestriction.trim()) nextErrors.companions[i].otherRestriction = 'Requerido';
+    });
+    setErrors(nextErrors);
+    const hasCompanionErr = nextErrors.companions.some(e => e.name || e.otherRestriction);
+    return !(
+      nextErrors.guestName || nextErrors.otherRestriction || hasCompanionErr
+    );
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      alert('Completá los campos requeridos.');
+      return;
+    }
     const payload = {
       guestName,
       foodRestriction,
@@ -249,15 +290,16 @@ const RSVPSectionFull = () => {
                 type="text"
                 placeholder="Ingresá tu nombre completo"
                 value={guestName}
-                onChange={e => setGuestName(e.target.value)}
+                onChange={e => { const v = e.target.value; setGuestName(v); setErrors(prev => ({ ...prev, guestName: v.trim() ? '' : prev.guestName })); }}
                 className="form-control"
-                style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
+                style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 8, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0, borderColor: errors.guestName ? '#c33' : undefined }}
               />
+              {errors.guestName && <small style={{ color: '#c33', display: 'block', marginBottom: 12 }}>Campo requerido</small>}
 
               <label className="form-label">¿Tenés alguna restricción alimenticia?</label>
               <select
                 value={foodRestriction}
-                onChange={e => { setFoodRestriction(e.target.value); if(e.target.value !== 'Otras') setOtherRestriction(''); }}
+                onChange={e => { const v = e.target.value; setFoodRestriction(v); if(v !== 'Otras') { setOtherRestriction(''); setErrors(prev => ({ ...prev, otherRestriction: '' })); } }}
                 className="form-control"
                 style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
               >
@@ -272,11 +314,12 @@ const RSVPSectionFull = () => {
                   type="text"
                   placeholder="Especificá tu restricción"
                   value={otherRestriction}
-                  onChange={e => setOtherRestriction(e.target.value)}
+          onChange={e => { const v = e.target.value; setOtherRestriction(v); setErrors(prev => ({ ...prev, otherRestriction: v.trim() ? '' : prev.otherRestriction })); }}
                   className="form-control"
-                  style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
+          style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 8, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0, borderColor: errors.otherRestriction ? '#c33' : undefined }}
                 />
               )}
+        {foodRestriction === 'Otras' && errors.otherRestriction && <small style={{ color: '#c33', display: 'block', marginBottom: 12 }}>Campo requerido</small>}
 
               <button
                 type="button"
@@ -305,8 +348,9 @@ const RSVPSectionFull = () => {
                     value={companion.name}
                     onChange={e => updateCompanion(idx, "name", e.target.value)}
                     className="form-control"
-                    style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
+                    style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 8, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0, borderColor: (errors.companions[idx] && errors.companions[idx].name) ? '#c33' : undefined }}
                   />
+                  {(errors.companions[idx] && errors.companions[idx].name) && <small style={{ color: '#c33', display: 'block', marginBottom: 12 }}>Campo requerido</small>}
 
                   <label style={{display: 'block', marginBottom: 8, fontWeight: 500}}>¿Tiene alguna restricción alimenticia?</label>
                   <select
@@ -326,11 +370,12 @@ const RSVPSectionFull = () => {
                       type="text"
                       placeholder="Especificá la restricción"
                       value={companion.otherRestriction}
-                      onChange={e => updateCompanion(idx, "otherRestriction", e.target.value)}
+            onChange={e => updateCompanion(idx, "otherRestriction", e.target.value)}
                       className="form-control"
-                      style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 16, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0 }}
+            style={{ width: '100%', maxWidth: isMobile ? 320 : 360, marginBottom: 8, display: 'block', marginLeft: isMobile ? 'auto' : 0, marginRight: isMobile ? 'auto' : 0, borderColor: (errors.companions[idx] && errors.companions[idx].otherRestriction) ? '#c33' : undefined }}
                     />
                   )}
+          {companion.foodRestriction === 'Otras' && (errors.companions[idx] && errors.companions[idx].otherRestriction) && <small style={{ color: '#c33', display: 'block', marginBottom: 12 }}>Campo requerido</small>}
                 </div>
               ))}
 
