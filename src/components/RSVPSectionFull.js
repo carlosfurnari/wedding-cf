@@ -12,7 +12,9 @@ const RSVPSectionFull = () => {
   const [otherRestriction, setOtherRestriction] = useState("");
   const [companions, setCompanions] = useState([]);
   const deviceId = useMemo(() => getOrCreateDeviceId(), []);
-  const submitted = useMemo(() => getRsvpSubmitted(), []);
+  const [submitted, setSubmitted] = useState(() => getRsvpSubmitted());
+  const [submitting, setSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Load draft on mount
   useEffect(() => {
@@ -29,6 +31,13 @@ const RSVPSectionFull = () => {
   useEffect(() => {
     saveRsvpDraft({ guestName, foodRestriction, otherRestriction, companions });
   }, [guestName, foodRestriction, otherRestriction, companions]);
+
+  // Auto-hide success notice after a few seconds
+  useEffect(() => {
+    if (!showSuccess) return;
+    const t = setTimeout(() => setShowSuccess(false), 4000);
+    return () => clearTimeout(t);
+  }, [showSuccess]);
 
   // Lock scroll using fixed body to preserve scroll position and avoid jumps
   useEffect(() => {
@@ -97,6 +106,7 @@ const RSVPSectionFull = () => {
       ua: navigator.userAgent
     };
     try {
+      setSubmitting(true);
       await fetch('/.netlify/functions/rsvp', {
         method: 'POST',
         body: JSON.stringify(payload),
@@ -105,8 +115,12 @@ const RSVPSectionFull = () => {
       markRsvpSubmitted({ deviceId, guestName, companionsCount: companions.length });
   clearRsvpDraft();
       setShowModal(false);
+      setSubmitted(true);
+  setShowSuccess(true);
     } catch (err) {
       alert('Error al enviar: ' + err.message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -160,15 +174,24 @@ const RSVPSectionFull = () => {
           Esperamos que puedas acompañarnos.<br />¡Confirmá tu asistencia antes del 20/10/2025!
         </p>
         <div style={{textAlign: 'center', width: '100%', marginBottom: '0.5rem'}}>
-          <button className="btn btn--primary btn--md"
-            style={{margin: '0 auto', display: 'inline-block', marginBottom: 0}}
-            onClick={() => { setScrollYBeforeModal(window.scrollY || window.pageYOffset || 0); setShowModal(true); }} disabled={!!submitted}>
-            CONFIRMAR ASISTENCIA
+          <button
+            className="btn btn--primary btn--md"
+            style={{ margin: '0 auto', display: 'inline-block', marginBottom: 0 }}
+            onClick={() => { setScrollYBeforeModal(window.scrollY || window.pageYOffset || 0); setShowModal(true); }}
+            disabled={submitted}
+          >
+            {submitted ? 'ENVIADO' : 'CONFIRMAR ASISTENCIA'}
           </button>
           {submitted && (
-            <p style={{marginTop: 8, fontSize: '0.9rem', color: 'var(--text-muted)'}}>
-              Ya enviaste tu confirmación desde este dispositivo.
-            </p>
+            showSuccess ? (
+              <p role="status" aria-live="polite" style={{ marginTop: 8, fontSize: '0.95rem', color: '#2e7d32', fontWeight: 600 }}>
+                ¡Gracias! Confirmación enviada.
+              </p>
+            ) : (
+              <p style={{ marginTop: 8, fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                Ya enviaste tu confirmación desde este dispositivo.
+              </p>
+            )
           )}
         </div>
       {showModal && createPortal((
@@ -315,8 +338,9 @@ const RSVPSectionFull = () => {
                 type="submit"
                 className="btn btn--primary btn--md"
                 style={{ width: '100%', fontWeight: 600, fontSize: '1.05rem', marginTop: 8 }}
+                disabled={submitting}
               >
-                Enviar confirmación
+                {submitting ? 'Enviando…' : 'Enviar confirmación'}
               </button>
             </form>
           </div>
